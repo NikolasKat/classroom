@@ -37,6 +37,7 @@ function Header() {
                                 <button className="bg-white mb-2">
                                     Присоединиться
                                 </button>
+                                <hr />
                                 <button className="bg-white">
                                     Создать курс
                                 </button>
