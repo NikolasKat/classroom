@@ -23,36 +23,46 @@ function Header() {
                         <h2>Classroom</h2>
                     </Link>
                 </div>
-                <div className="relative">
-                    <button
-                        className="text-4xl bg-slate-100 rounded-full p-3 hover:text-gray-500"
-                        onClick={() => {
-                            setIsClicked((isClicked) => !isClicked);
-                        }}
-                        onBlur={() => setIsClicked(false)}
-                    >
-                        <RxPlus />
-                    </button>
-                    {!isClicked ? (
-                        <div className="absolute right-0 top-16 z-20 p-4 border border-solid border-gray-200 rounded-lg text-blue-800 bg-blue-50">
-                            <ul className="text-2xl">
-                                <div className="flex items-center gap-3">
-                                    <IoEnter className="text-4xl" />
-                                    <button className="bg-transparent hover:text-gray-500">
-                                        Присоединиться
-                                    </button>
+                <nav>
+                    <ul className="flex items-center gap-5 text-2xl">
+                        <li>
+                            <Link to="#">Мои курсы</Link>
+                        </li>
+                        <li>
+                            <Link to="#">Одногрупники</Link>
+                        </li>
+                        <li className="relative">
+                            <button
+                                className="text-4xl bg-slate-100 rounded-full p-3 hover:text-gray-500"
+                                onClick={() => {
+                                    setIsClicked((isClicked) => !isClicked);
+                                }}
+                                onBlur={() => setIsClicked(false)}
+                            >
+                                <RxPlus />
+                            </button>
+                            {isClicked ? (
+                                <div className="absolute right-0 top-16 z-20 p-4 border border-solid border-gray-200 rounded-lg text-blue-800 bg-blue-50">
+                                    <ul className="text-2xl">
+                                        <div className="flex items-center gap-3">
+                                            <IoEnter className="text-4xl" />
+                                            <button className="bg-transparent hover:text-gray-500">
+                                                Присоединиться
+                                            </button>
+                                        </div>
+                                        <hr className="my-2" />
+                                        <div className="flex items-end gap-3">
+                                            <IoIosCreate className="text-4xl" />
+                                            <button className="bg-transparent hover:text-gray-500">
+                                                Создать курс
+                                            </button>
+                                        </div>
+                                    </ul>
                                 </div>
-                                <hr className="my-2" />
-                                <div className="flex items-end gap-3">
-                                    <IoIosCreate className="text-4xl" />
-                                    <button className="bg-transparent hover:text-gray-500">
-                                        Создать курс
-                                    </button>
-                                </div>
-                            </ul>
-                        </div>
-                    ) : null}
-                </div>
+                            ) : null}
+                        </li>
+                    </ul>
+                </nav>
             </header>
             <hr />
             <Outlet />
