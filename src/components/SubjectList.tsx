@@ -1,5 +1,6 @@
 import SubjectCard from "./SubjectCard";
 
+// пока пусть будет так. Потом переделаем уже под бэк
 function SubjectList({ data }) {
     return (
         <>
@@ -7,8 +8,8 @@ function SubjectList({ data }) {
                 {data.map((item, i: number) => (
                     <SubjectCard
                         key={i}
-                        color="cyan"
-                        bgImg="red"
+                        color="#106464"
+                        bgImg="#cfdf68"
                         subjectName="Math"
                         teacherName="Jhon Uezzers"
                     />
