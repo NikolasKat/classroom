@@ -1,8 +1,11 @@
 import { FC, useState } from "react";
-import {
-    MdOutlineAccessibilityNew,
-    MdOutlineAccessibleForward,
-} from "react-icons/md";
+// import {
+//     MdOutlineAccessibilityNew,
+//     MdOutlineAccessibleForward,
+// } from "react-icons/md";
+import { FaSnowman } from "react-icons/fa";
+import { FaPersonSnowboarding } from "react-icons/fa6";
+
 import { Link } from "react-router-dom";
 import InfoALert from "./InfoALert";
 
@@ -49,7 +52,7 @@ const SubjectCard: FC<ICardData> = ({
                                     setIsLHover((isLHover) => false);
                                 }}
                             >
-                                <MdOutlineAccessibleForward className="hover:text-gray-500" />
+                                <FaPersonSnowboarding className="hover:text-gray-500" />
                             </button>
                             {isLHover ? (
                                 <InfoALert text="Покинуть курс" />
@@ -67,7 +70,7 @@ const SubjectCard: FC<ICardData> = ({
                                 setIsSHover((isSHover) => false);
                             }}
                         >
-                            <MdOutlineAccessibilityNew className="hover:text-gray-500" />
+                            <FaSnowman className="hover:text-gray-500" />
                         </Link>
                         {isSHover ? <InfoALert text="Твоя статистика" /> : null}
                     </div>
