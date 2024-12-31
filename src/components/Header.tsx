@@ -4,6 +4,7 @@ import { useState } from "react";
 import { RxPlus } from "react-icons/rx";
 import { IoIosCreate } from "react-icons/io";
 import { IoEnter } from "react-icons/io5";
+import { GiWinterHat } from "react-icons/gi";
 
 function Header() {
     const [isClicked, setIsClicked] = useState<boolean>(false);
@@ -12,7 +13,7 @@ function Header() {
 
     return (
         <>
-            <header className="flex justify-between items-center px-9 py-4 text-3xl font-medium">
+            <header className="flex justify-between items-end px-9 py-4 text-3xl font-medium">
                 <div className="flex items-center gap-9">
                     <Link
                         to="/"
@@ -23,7 +24,10 @@ function Header() {
                             alt="Home Page"
                             className="w-20"
                         />
-                        <h2>Classroom</h2>
+                        <div className="flex items-end relative">
+                            <GiWinterHat className="absolute top-[-12px] left-[7px] scale-x-[-1] text-4xl" />
+                            <h2 className="text-7xl font-bold">Classroom</h2>
+                        </div>
                     </Link>
                 </div>
 

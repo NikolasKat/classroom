@@ -3,7 +3,7 @@ import Header from "../components/Header";
 
 export default function HomePage() {
     return (
-        <section>
+        <section className="pb-11">
             <Header />
             <Outlet />
         </section>
