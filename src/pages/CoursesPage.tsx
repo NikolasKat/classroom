@@ -4,7 +4,7 @@ const data: number[] = [1, 2, 3, 4, 5, 9]; // я так понимаю, что �
 
 export default function CoursesPage() {
     return (
-        <div>
+        <div className="px-9">
             {data.length ? (
                 <SubjectList data={data} />
             ) : (
