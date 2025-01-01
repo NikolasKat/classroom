@@ -48,7 +48,7 @@ function Header() {
                                 <RxPlus />
                             </button>
                             {isOpened ? (
-                                <div className="absolute right-0 top-16 z-20 p-4 border border-solid border-gray-200 rounded-lg text-blue-800 bg-blue-50">
+                                <div className="absolute right-0 top-16 z-20 p-4 border border-solid border-gray-200 rounded-lg text-black bg-blue-50">
                                     <ul className="text-2xl">
                                         <div className="flex items-center gap-3">
                                             <IoEnter className="text-4xl" />

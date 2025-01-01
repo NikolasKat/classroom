@@ -29,7 +29,7 @@ const UserCard: FC<UserData> = ({ name, surname, img, score }) => {
             <h4>Средний балл: {score}</h4>
             <div className="relative flex justify-center items-center">
                 <button
-                    className="text-4xl mt-2"
+                    className="text-4xl mt-4"
                     onMouseEnter={() => {
                         setIsLHover((isLHover) => true);
                     }}
@@ -40,7 +40,7 @@ const UserCard: FC<UserData> = ({ name, surname, img, score }) => {
                     <BiSolidMessageEdit />
                 </button>
                 {isLHover ? (
-                    <div className="absolute top-2 left-3">
+                    <div className="absolute text-base top-2 left-3">
                         <InfoALert text="Написать" />
                     </div>
                 ) : null}
