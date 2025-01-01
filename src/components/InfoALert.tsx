@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
 interface AlertText {
     text: string;
@@ -7,7 +7,7 @@ interface AlertText {
 const InfoALert: FC<AlertText> = ({ text }) => {
     return (
         <div
-            className="z-10 w-fit flex items-center h-8 p-3 text-sm text-blue-800 rounded-lg bg-blue-50"
+            className="z-10 w-fit flex items-center h-8 p-3 text-md text-black rounded-lg bg-blue-50"
             role="alert"
         >
             <svg
