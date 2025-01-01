@@ -27,7 +27,7 @@ const SubjectCard: FC<ICardData> = ({
 
     return (
         <>
-            <div className="flex">
+            <div className="flex relative">
                 <div className="flex flex-col justify-between min-w-[450px] min-h-[350px] border border-solid-black font-medium relative rounded-xl">
                     <div
                         style={{ backgroundColor: bgImg }}
@@ -55,7 +55,9 @@ const SubjectCard: FC<ICardData> = ({
                                 <FaPersonSnowboarding className="hover:text-gray-500" />
                             </button>
                             {isLHover ? (
-                                <InfoALert text="Покинуть курс" />
+                                <div className="absolute top-6 right-20">
+                                    <InfoALert text="Покинуть курс" />
+                                </div>
                             ) : null}
                         </div>
                     </div>
@@ -72,7 +74,11 @@ const SubjectCard: FC<ICardData> = ({
                         >
                             <FaSnowman className="hover:text-gray-500" />
                         </Link>
-                        {isSHover ? <InfoALert text="Твоя статистика" /> : null}
+                        {isSHover ? (
+                            <div className="absolute top-6 right-20">
+                                <InfoALert text="Твоя статистика" />
+                            </div>
+                        ) : null}
                     </div>
                     <div
                         style={{ backgroundColor: color }}

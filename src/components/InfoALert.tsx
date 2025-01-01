@@ -7,7 +7,7 @@ interface AlertText {
 const InfoALert: FC<AlertText> = ({ text }) => {
     return (
         <div
-            className="absolute z-10 top-6 right-16 w-fit flex items-center h-8 p-3 text-sm text-blue-800 rounded-lg bg-blue-50"
+            className="z-10 w-fit flex items-center h-8 p-3 text-sm text-blue-800 rounded-lg bg-blue-50"
             role="alert"
         >
             <svg

@@ -1,7 +1,9 @@
+import UsersList from "../components/UsersList";
+
 export default function ClassmatesPage() {
     return (
-        <div>
-            <h2>Classmates Page</h2>
+        <div className="px-9">
+            {/* <h2>Classmates Page</h2> */} <UsersList />
         </div>
     );
 }
