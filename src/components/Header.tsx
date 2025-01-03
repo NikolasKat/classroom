@@ -4,7 +4,7 @@ import { useState } from "react";
 import { RxPlus } from "react-icons/rx";
 import { IoIosCreate } from "react-icons/io";
 import { IoEnter } from "react-icons/io5";
-import { GiWinterHat } from "react-icons/gi";
+// import { GiWinterHat } from "react-icons/gi";
 
 function Header() {
     const [isOpened, setIsOpened] = useState<boolean>(false);
@@ -22,10 +22,7 @@ function Header() {
                             alt="Home Page"
                             className="w-20"
                         />
-                        <div className="flex items-end relative">
-                            <GiWinterHat className="absolute top-[-12px] left-[7px] scale-x-[-1] text-4xl" />
-                            <h2 className="text-7xl font-bold">Classroom</h2>
-                        </div>
+                        <h2 className="text-6xl font-bold">Classroom</h2>
                     </Link>
                 </div>
 
