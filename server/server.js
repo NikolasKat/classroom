@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 4444; // достаём и присваивае
 const app = express(); // создаём серверное приложение
 
 app.get("/", (req, res) => {
-   res.status(200).json("Server started!");
+   res.status(200).json("Start server!");
 });
 
 const start = async () => {
