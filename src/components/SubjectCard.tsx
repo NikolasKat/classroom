@@ -25,7 +25,7 @@ const SubjectCard: FC<ICardData> = ({
 
     return (
         <>
-            <div className="flex relative">
+            <div className="flex relative bg-slate-100">
                 <div className="flex flex-col justify-between min-w-[450px] min-h-[350px] border border-solid-black font-medium relative rounded-xl">
                     <div
                         style={{ backgroundColor: bgImg }}
@@ -34,7 +34,7 @@ const SubjectCard: FC<ICardData> = ({
                         <div>
                             <Link
                                 to="#"
-                                className="text-4xl hover:text-gray-500"
+                                className="transition duration-200 ease-in-out text-4xl hover:text-gray-500"
                             >
                                 {subjectName}
                             </Link>
@@ -50,7 +50,7 @@ const SubjectCard: FC<ICardData> = ({
                                     setIsLHover((isLHover) => false);
                                 }}
                             >
-                                <MdOutlineAccessibleForward className="hover:text-gray-500" />
+                                <MdOutlineAccessibleForward className="transition duration-200 ease-in-out hover:text-gray-500" />
                             </button>
                             {isLHover ? (
                                 <div className="absolute top-6 right-20">
@@ -70,7 +70,7 @@ const SubjectCard: FC<ICardData> = ({
                                 setIsSHover((isSHover) => false);
                             }}
                         >
-                            <MdOutlineAccessibilityNew className="hover:text-gray-500" />
+                            <MdOutlineAccessibilityNew className="transition duration-200 ease-in-out hover:text-gray-500" />
                         </Link>
                         {isSHover ? (
                             <div className="absolute top-6 right-20">

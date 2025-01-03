@@ -37,10 +37,10 @@ const UserCard: FC<UserData> = ({ name, surname, img, score }) => {
                         setIsLHover((isLHover) => false);
                     }}
                 >
-                    <BiSolidMessageEdit />
+                    <BiSolidMessageEdit className="transition duration-200 ease-in-out hover:text-gray-500" />
                 </button>
                 {isLHover ? (
-                    <div className="absolute text-base top-2 left-3">
+                    <div className="absolute text-base top-[15px] left-1">
                         <InfoALert text="Написать" />
                     </div>
                 ) : null}

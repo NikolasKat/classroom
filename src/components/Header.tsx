@@ -11,11 +11,11 @@ function Header() {
 
     return (
         <>
-            <header className="flex justify-between items-end px-9 py-4 text-3xl font-medium">
+            <header className="flex justify-between items-end px-9 py-4 text-3xl font-medium bg-slate-100">
                 <div className="flex items-center gap-9">
                     <Link
                         to="/"
-                        className="flex justify-items-start items-center gap-2 hover:text-gray-500"
+                        className="transition duration-200 ease-in-out flex justify-items-start items-center gap-2 hover:text-gray-500"
                     >
                         <img
                             src="../../public/main_logo.svg"
@@ -26,17 +26,27 @@ function Header() {
                     </Link>
                 </div>
 
-                <nav className="flex items-center gap-5 text-4xl">
+                <nav className="flex items-center gap-5">
                     <ul className="flex items-center gap-5 text-2xl">
                         <li className="hover:text-gray-500">
-                            <Link to="courses">Мои курсы</Link>
+                            <Link
+                                to="courses"
+                                className="transition duration-200 ease-in-out hover:text-gray-500"
+                            >
+                                Мои курсы
+                            </Link>
                         </li>
-                        <li className="hover:text-gray-500">
-                            <Link to="classmates">Одногрупники</Link>
+                        <li>
+                            <Link
+                                to="classmates"
+                                className="transition duration-200 ease-in-out hover:text-gray-500"
+                            >
+                                Одногрупники
+                            </Link>
                         </li>
                         <li className="hover:text-gray-500 relative">
                             <button
-                                className="text-4xl bg-slate-100 rounded-full p-3 hover:text-gray-500"
+                                className="text-4xl bg-slate-200 rounded-full p-3 hover:text-gray-500"
                                 onClick={() => {
                                     setIsOpened((isClicked) => !isClicked);
                                 }}
