@@ -1,19 +1,18 @@
-import SubjectCard from "./SubjectCard";
+import TaskCard from "./TaskCard";
 
 // пока пусть будет так. Потом переделаем уже под бэк
 function SubjectList({ data }) {
     return (
         <>
-            <div className="flex justify-center gap-16 flex-wrap">
+            <div className="flex items-center flex-col gap-5">
                 {data.map((item, i: number) => (
-                    <SubjectCard
+                    <TaskCard
                         key={i}
                         id={i}
-                        color="#106464"
-                        bgImg="#cfdf68"
+                        title="Lecture notes"
                         subjectName="Math"
-                        teacherName="Jhon Uezzers"
-                        isConnected={true}
+                        files={[]}
+                        isCompleted={false}
                     />
                 ))}
             </div>
