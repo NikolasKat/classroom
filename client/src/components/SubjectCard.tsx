@@ -1,14 +1,11 @@
 import { FC, useState } from "react";
-import {
-    MdOutlineAccessibilityNew,
-    MdOutlineAccessibleForward,
-} from "react-icons/md";
 import { IoLogInOutline, IoLogOutOutline } from "react-icons/io5";
 
 import { Link } from "react-router-dom";
 import InfoALert from "./InfoALert";
 
 interface ICardData {
+    id: string | number;
     subjectName: string;
     teacherName: string;
     bgImg: string;
@@ -17,6 +14,7 @@ interface ICardData {
 }
 
 const SubjectCard: FC<ICardData> = ({
+    id,
     subjectName,
     teacherName,
     bgImg,
@@ -24,7 +22,6 @@ const SubjectCard: FC<ICardData> = ({
     isConnected,
 }) => {
     const [isLHover, setIsLHover] = useState<boolean>(false);
-    const [isSHover, setIsSHover] = useState<boolean>(false);
 
     return (
         <>
@@ -36,7 +33,7 @@ const SubjectCard: FC<ICardData> = ({
                     >
                         <div>
                             <Link
-                                to="#"
+                                to={`/${id}`}
                                 className="transition duration-200 ease-in-out text-4xl hover:text-gray-500"
                             >
                                 {subjectName}
@@ -58,7 +55,6 @@ const SubjectCard: FC<ICardData> = ({
                                 ) : (
                                     <IoLogInOutline className="transition duration-200 ease-in-out hover:text-gray-500" />
                                 )}
-                                {/* <MdOutlineAccessibleForward className="transition duration-200 ease-in-out hover:text-gray-500" /> */}
                             </button>
                             {isLHover ? (
                                 <div className="absolute top-6 right-20">

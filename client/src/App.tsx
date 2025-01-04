@@ -6,6 +6,7 @@ import RegisterPage from "./pages/RegisterPage";
 import AllCoursesPage from "./pages/AllCoursesPage";
 import MyCoursesPage from "./pages/MyCoursesPage";
 import ClassmatesPage from "./pages/ClassmatesPage";
+import CoursePage from "./pages/CoursePage";
 
 function App() {
     return (
@@ -18,7 +19,7 @@ function App() {
                         element={<AllCoursesPage />}
                     ></Route>
                     <Route path="myCourses" element={<MyCoursesPage />}></Route>
-
+                    <Route path="/:id" element={<CoursePage />} />
                     <Route
                         path="classmates"
                         element={<ClassmatesPage />}
