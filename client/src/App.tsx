@@ -1,10 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
-import Header from "./components/Header";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import CoursesPage from "./pages/CoursesPage";
+import AllCoursesPage from "./pages/AllCoursesPage";
+import MyCoursesPage from "./pages/MyCoursesPage";
 import ClassmatesPage from "./pages/ClassmatesPage";
 
 function App() {
@@ -13,7 +13,12 @@ function App() {
             <Routes>
                 <Route path="/" element={<HomePage />}>
                     <Route index element={<div>home </div>}></Route>
-                    <Route path="courses" element={<CoursesPage />}></Route>
+                    <Route
+                        path="allCourses"
+                        element={<AllCoursesPage />}
+                    ></Route>
+                    <Route path="myCourses" element={<MyCoursesPage />}></Route>
+
                     <Route
                         path="classmates"
                         element={<ClassmatesPage />}
