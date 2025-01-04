@@ -12,6 +12,7 @@ function SubjectList({ data }) {
                         bgImg="#cfdf68"
                         subjectName="Math"
                         teacherName="Jhon Uezzers"
+                        isConnected={true}
                     />
                 ))}
             </div>

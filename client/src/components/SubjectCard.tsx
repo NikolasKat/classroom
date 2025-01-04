@@ -3,6 +3,7 @@ import {
     MdOutlineAccessibilityNew,
     MdOutlineAccessibleForward,
 } from "react-icons/md";
+import { IoLogInOutline, IoLogOutOutline } from "react-icons/io5";
 
 import { Link } from "react-router-dom";
 import InfoALert from "./InfoALert";
@@ -12,6 +13,7 @@ interface ICardData {
     teacherName: string;
     bgImg: string;
     color: string;
+    isConnected: boolean;
 }
 
 const SubjectCard: FC<ICardData> = ({
@@ -19,6 +21,7 @@ const SubjectCard: FC<ICardData> = ({
     teacherName,
     bgImg,
     color,
+    isConnected,
 }) => {
     const [isLHover, setIsLHover] = useState<boolean>(false);
     const [isSHover, setIsSHover] = useState<boolean>(false);
@@ -50,17 +53,28 @@ const SubjectCard: FC<ICardData> = ({
                                     setIsLHover((isLHover) => false);
                                 }}
                             >
-                                <MdOutlineAccessibleForward className="transition duration-200 ease-in-out hover:text-gray-500" />
+                                {isConnected ? (
+                                    <IoLogOutOutline className="transition duration-200 ease-in-out hover:text-gray-500" />
+                                ) : (
+                                    <IoLogInOutline className="transition duration-200 ease-in-out hover:text-gray-500" />
+                                )}
+                                {/* <MdOutlineAccessibleForward className="transition duration-200 ease-in-out hover:text-gray-500" /> */}
                             </button>
                             {isLHover ? (
                                 <div className="absolute top-6 right-20">
-                                    <InfoALert text="Покинуть курс" />
+                                    <InfoALert
+                                        text={
+                                            isConnected
+                                                ? "Покинуть курс"
+                                                : "Присоединиться к курсу"
+                                        }
+                                    />
                                 </div>
                             ) : null}
                         </div>
                     </div>
-                    <div className="p-6 flex justify-end border-t border-solid-black relative">
-                        <Link
+                    <div className="p-6 flex justify-end border-t border-solid-black relative text-2xl">
+                        {/* <Link
                             to="#"
                             className="text-4xl bg-transparent hover:text-gray-600"
                             onMouseEnter={() => {
@@ -76,7 +90,7 @@ const SubjectCard: FC<ICardData> = ({
                             <div className="absolute top-6 right-20">
                                 <InfoALert text="Твоя статистика" />
                             </div>
-                        ) : null}
+                        ) : null} */}
                     </div>
                     <div
                         style={{ backgroundColor: color }}
