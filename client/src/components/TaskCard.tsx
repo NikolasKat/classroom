@@ -26,7 +26,7 @@ const TaskCard: FC<ITaskData> = ({ id, title, subjectName, files }) => {
     const [isCompleted, setIsCompleted] = useState<boolean>(false);
 
     return (
-        <div className="relative flex items-center w-11/12 justify-between text-5xl border border-solid-black px-5 py-3 rounded-2xl">
+        <div className="relative flex items-center w-11/12 justify-between text-5xl border border-solid-black px-5 py-4 rounded-2xl">
             <div className="flex items-center gap-6">
                 <div className="bg-slate-100 p-4 rounded-full">
                     <SlBookOpen />
@@ -57,7 +57,7 @@ const TaskCard: FC<ITaskData> = ({ id, title, subjectName, files }) => {
             {isHover ? (
                 <div className="absolute top-9 right-20 text-lg">
                     <InfoALert
-                        text={isCompleted ? "Уже сдано" : "Сдать работу"}
+                        text={isCompleted ? "Выполнено" : "Сдать работу"}
                     />
                 </div>
             ) : null}
