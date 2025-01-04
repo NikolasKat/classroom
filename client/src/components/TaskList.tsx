@@ -1,4 +1,5 @@
 import TaskCard from "./TaskCard";
+import { ETypeOfTask } from "./TaskCard";
 
 // пока пусть будет так. Потом переделаем уже под бэк
 function SubjectList({ data }) {
@@ -12,7 +13,7 @@ function SubjectList({ data }) {
                         title="Lecture notes"
                         subjectName="Math"
                         files={[]}
-                        isCompleted={false}
+                        type={ETypeOfTask.LAB}
                     />
                 ))}
             </div>
