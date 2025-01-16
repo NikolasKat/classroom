@@ -18,7 +18,7 @@ const start = async () => {
    try {
       await mongoose.connect(process.env.DB_URL);
       app.listen(PORT, () => {
-         console.log(`SERVER STARTED ON PORT = ${PORT} !`);
+         console.log(`SERVER STARTED ON PORT: ${PORT} !`);
       });
    } catch (error) {
       console.log(error);
