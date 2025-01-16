@@ -3,19 +3,22 @@ require("dotenv").config(); // подключаем файл конфигура�
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const mongoose = require("mongoose");
+const authRouter = require("./router/authRouter");
 
 const PORT = process.env.PORT || 4444; // достаём и присваиваем порт из файла конфигурации
 const app = express(); // создаём серверное приложение
 
-app.get("/", (req, res) => {
-   res.status(200).json("Start server!");
-});
+app.use(express.json());
+app.use(cors());
+app.use(cookieParser());
+app.use("/auth", authRouter);
 
 const start = async () => {
    try {
+      await mongoose.connect(process.env.DB_URL);
       app.listen(PORT, () => {
-         // запуск приложения
-         console.log(`SERVER STARTED ON PORT: ${PORT} !`);
+         console.log(`SERVER STARTED ON PORT = ${PORT} !`);
       });
    } catch (error) {
       console.log(error);
