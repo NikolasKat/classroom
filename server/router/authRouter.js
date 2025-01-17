@@ -2,6 +2,7 @@ const Router = require("express");
 const router = new Router();
 const controller = require("../controllers/authController");
 const { check } = require("express-validator");
+const authMiddleware = require("../middleware/authMiddleware");
 
 router.post(
    "/register",
@@ -12,13 +13,12 @@ router.post(
          min: 7,
          max: 14,
       }),
-
       check("lastName", "Это поле не может быть пустым").notEmpty(),
       check("firstName", "Это поле не может быть пустым").notEmpty(),
    ],
    controller.registration
 );
 router.post("/login", controller.login);
-router.get("/client", controller.getClient);
+router.get("/client", authMiddleware, controller.getClient);
 
 module.exports = router;
