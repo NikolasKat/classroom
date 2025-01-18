@@ -4,15 +4,15 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
-const authRouter = require("./router/authRouter");
+const router = require("./router/index");
 
 const PORT = process.env.PORT || 4444; // достаём и присваиваем порт из файла конфигурации
 const app = express(); // создаём серверное приложение
 
 app.use(express.json());
-app.use(cors());
 app.use(cookieParser());
-app.use("/auth", authRouter);
+app.use(cors());
+app.use("/api", router);
 
 const start = async () => {
    try {
