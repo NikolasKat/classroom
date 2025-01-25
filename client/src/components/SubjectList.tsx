@@ -8,7 +8,7 @@ function SubjectList({ data }) {
                 {data.map((item, i: number) => (
                     <SubjectCard
                         key={i}
-                        id={i}
+                        id={item}
                         color="#106464"
                         bgImg="#cfdf68"
                         subjectName="Math"

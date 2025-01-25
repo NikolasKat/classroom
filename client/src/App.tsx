@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -7,8 +7,29 @@ import AllCoursesPage from "./pages/AllCoursesPage";
 import MyCoursesPage from "./pages/MyCoursesPage";
 import ClassmatesPage from "./pages/ClassmatesPage";
 import CoursePage from "./pages/CoursePage";
+import { useEffect } from "react";
+import { checkAuth } from "./store/slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const authData = useSelector((state: unknown) => state.user.isAuth);
+
+    useEffect(() => {
+        if (localStorage.getItem("token")) {
+            dispatch(checkAuth());
+        }
+    }, []);
+
+    useEffect(() => {
+        if (authData) {
+            navigate("/");
+        } else {
+            navigate("/register");
+        }
+    }, [authData]);
+
     return (
         <>
             <Routes>

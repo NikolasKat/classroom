@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
+import { IoLogOut } from "react-icons/io5";
+import { useDispatch } from "react-redux";
+import { logout } from "../store/slices/userSlice";
+import InfoALert from "./InfoALert";
 import { useState } from "react";
 
-import { RxPlus } from "react-icons/rx";
-import { IoIosCreate } from "react-icons/io";
-import { IoEnter } from "react-icons/io5";
-// import { GiWinterHat } from "react-icons/gi";
-
 function Header() {
-    const [isOpened, setIsOpened] = useState<boolean>(false);
+    const [isLHover, setIsLHover] = useState<boolean>(false);
+    const dispatch = useDispatch();
 
     return (
         <>
@@ -52,36 +52,25 @@ function Header() {
                                 Одногрупники
                             </Link>
                         </li>
-                        {/* <li className="hover:text-gray-500 relative">
+                        <div>
                             <button
-                                className="text-4xl bg-slate-200 rounded-full p-3 hover:text-gray-500"
-                                onClick={() => {
-                                    setIsOpened((isClicked) => !isClicked);
+                                className="text-5xl"
+                                onClick={() => dispatch(logout())}
+                                onMouseEnter={() => {
+                                    setIsLHover((isLHover) => true);
                                 }}
-                                onBlur={() => setIsOpened(false)}
+                                onMouseLeave={() => {
+                                    setIsLHover((isLHover) => false);
+                                }}
                             >
-                                <RxPlus />
+                                <IoLogOut />
                             </button>
-                            {isOpened ? (
-                                <div className="absolute right-0 top-16 z-20 p-4 border border-solid border-gray-200 rounded-lg text-black bg-blue-50">
-                                    <ul className="text-2xl">
-                                        <div className="flex items-center gap-3">
-                                            <IoEnter className="text-4xl" />
-                                            <button className="bg-transparent hover:text-gray-500">
-                                                Присоединиться
-                                            </button>
-                                        </div>
-                                        <hr className="my-2" />
-                                        <div className="flex items-end gap-3">
-                                            <IoIosCreate className="text-4xl" />
-                                            <button className="bg-transparent hover:text-gray-500">
-                                                Создать курс
-                                            </button>
-                                        </div>
-                                    </ul>
+                            {isLHover ? (
+                                <div className="absolute text-lg top-24 right-7">
+                                    <InfoALert text="Выйти из аккаунта" />
                                 </div>
                             ) : null}
-                        </li> */}
+                        </div>
                     </ul>
                 </nav>
             </header>

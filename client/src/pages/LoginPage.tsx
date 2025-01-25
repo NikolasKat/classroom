@@ -1,9 +1,11 @@
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { IUserSlice, login } from "../store/slices/userSlice";
 
 interface UserData {
     email: string;
-    password: string | number;
+    password: string;
 }
 
 const LoginPage = () => {
@@ -13,11 +15,16 @@ const LoginPage = () => {
         formState: { errors },
     } = useForm<UserData>();
 
-    const navigate = useNavigate();
+    const loginData = useSelector((state: IUserSlice) => state.user);
+
+    const dispatch = useDispatch();
 
     const onSubmit: SubmitHandler<UserData> = (data) => {
-        console.log(data);
-        navigate("/");
+        try {
+            dispatch(login(data));
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -38,11 +45,14 @@ const LoginPage = () => {
                         id="email"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="name@flowbite.com"
-                        {...register("email", { required: true })}
+                        {...register("email", {
+                            required: true,
+                        })}
                     />
                     {errors.email?.type === "required" && (
                         <p role="alert">Email is required</p>
                     )}
+                    {errors.email && <p role="alert">Wrong email</p>}
                 </div>
                 <div className="mb-5">
                     <label
@@ -55,10 +65,16 @@ const LoginPage = () => {
                         type="password"
                         id="password"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        {...register("password", { required: true })}
+                        {...register("password", {
+                            required: true,
+                            minLength: 5,
+                        })}
                     />
                     {errors.password?.type === "required" && (
                         <p role="alert">Password is required</p>
+                    )}
+                    {errors.password?.type === "minLength" && (
+                        <p role="alert">Password is too small</p>
                     )}
                 </div>
                 <button

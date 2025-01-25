@@ -1,32 +1,32 @@
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-
-enum UserStatus {
-    STUDENT = "student",
-    TEACHER = "teacher",
-}
+import { registration } from "../store/slices/userSlice";
 
 interface NewUserData {
     firstName: string;
     lastName: string;
     email: string;
-    password: string | number;
-    status: UserStatus;
+    password: string;
 }
 
 const RegisterPage = () => {
     const {
         register,
         handleSubmit,
-        control,
         formState: { errors },
     } = useForm<NewUserData>();
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const onSubmit: SubmitHandler<NewUserData> = (data) => {
-        console.log(data);
-        navigate("/login");
+        try {
+            dispatch(registration(data));
+            navigate("/login");
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -77,34 +77,7 @@ const RegisterPage = () => {
                         <p role="alert">Surname is required</p>
                     )}
                 </div>
-                <div className="relative z-0 w-full mb-5 group text-lg">
-                    <Controller
-                        name="status"
-                        control={control}
-                        defaultValue={UserStatus.STUDENT}
-                        render={({ field }) => (
-                            <select
-                                {...field}
-                                className="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            >
-                                {" "}
-                                {Object.values(UserStatus).map((status) => (
-                                    <option
-                                        key={status}
-                                        value={status}
-                                        className="text-gray-900 bg-white dark:bg-gray-700 dark:text-white"
-                                    >
-                                        {" "}
-                                        {status}{" "}
-                                    </option>
-                                ))}{" "}
-                            </select>
-                        )}
-                    />
-                    {errors.status?.type === "required" && (
-                        <p role="alert">First name is required</p>
-                    )}
-                </div>
+
                 <div className="relative z-0 w-full mb-5 group">
                     <input
                         type="email"
@@ -129,7 +102,10 @@ const RegisterPage = () => {
                         placeholder=" "
                         id="floating_password"
                         className="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        {...register("password", { required: true })}
+                        {...register("password", {
+                            required: true,
+                            minLength: 5,
+                        })}
                     />
                     <label
                         htmlFor="floating_password"
@@ -139,6 +115,9 @@ const RegisterPage = () => {
                     </label>
                     {errors.password?.type === "required" && (
                         <p role="alert">Password is required</p>
+                    )}
+                    {errors.password?.type === "minLength" && (
+                        <p role="alert">Password is too small</p>
                     )}
                 </div>
                 <button
