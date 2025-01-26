@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { IUserSlice, login } from "../store/slices/userSlice";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { login } from "../store/slices/userSlice";
 
 interface UserData {
     email: string;
@@ -14,8 +14,6 @@ const LoginPage = () => {
         handleSubmit,
         formState: { errors },
     } = useForm<UserData>();
-
-    const loginData = useSelector((state: IUserSlice) => state.user);
 
     const dispatch = useDispatch();
 
@@ -52,7 +50,6 @@ const LoginPage = () => {
                     {errors.email?.type === "required" && (
                         <p role="alert">Email is required</p>
                     )}
-                    {errors.email && <p role="alert">Wrong email</p>}
                 </div>
                 <div className="mb-5">
                     <label

@@ -9,6 +9,7 @@ export interface IUserSlice {
     user: IUser;
     isAuth: boolean;
     isLoading: boolean;
+    isLogin: boolean;
 }
 
 interface ILogin {
@@ -27,6 +28,7 @@ const initialState: IUserSlice = {
     user: {} as IUser,
     isAuth: false,
     isLoading: false,
+    isLogin: false,
 };
 
 export const login = createAsyncThunk(
@@ -37,8 +39,10 @@ export const login = createAsyncThunk(
             const response = await AuthService.login(email, password);
             localStorage.setItem("token", response.data.accessToken);
             dispatch(setAuth(true));
+            dispatch(setLogin(true));
             dispatch(setUser(response.data.user));
         } catch (error) {
+            dispatch(setLogin(false));
             return rejectWithValue(error);
         }
     },
@@ -71,6 +75,7 @@ export const logout = createAsyncThunk(
             const response = await AuthService.logout();
             localStorage.removeItem("token");
             dispatch(setAuth(false));
+            dispatch(setLogin(false));
             dispatch(setUser({} as IUser));
             return response;
         } catch (error) {
@@ -82,7 +87,7 @@ export const logout = createAsyncThunk(
 export const checkAuth = createAsyncThunk(
     "user/checkAuth",
     async function (_data, { rejectWithValue, dispatch }) {
-        userSlice.actions.setLoading(true);
+        dispatch(setLoading(true));
         try {
             const response = await axios.get<AuthResponse>(
                 `${API_URL}/refresh`,
@@ -94,7 +99,7 @@ export const checkAuth = createAsyncThunk(
         } catch (error) {
             return rejectWithValue(error);
         } finally {
-            userSlice.actions.setLoading(false);
+            dispatch(setLoading(false));
         }
     },
 );
@@ -112,8 +117,11 @@ export const userSlice = createSlice({
         setLoading(state, action) {
             state.isLoading = action.payload;
         },
+        setLogin(state, action) {
+            state.isLogin = action.payload;
+        },
     },
 });
 
-export const { setAuth, setUser } = userSlice.actions;
+export const { setAuth, setUser, setLogin, setLoading } = userSlice.actions;
 export default userSlice.reducer;

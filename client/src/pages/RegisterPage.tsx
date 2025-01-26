@@ -1,6 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { registration } from "../store/slices/userSlice";
 
 interface NewUserData {
@@ -17,13 +17,11 @@ const RegisterPage = () => {
         formState: { errors },
     } = useForm<NewUserData>();
 
-    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const onSubmit: SubmitHandler<NewUserData> = (data) => {
         try {
             dispatch(registration(data));
-            navigate("/login");
         } catch (error) {
             console.log(error);
         }
@@ -105,6 +103,7 @@ const RegisterPage = () => {
                         {...register("password", {
                             required: true,
                             minLength: 5,
+                            maxLength: 14,
                         })}
                     />
                     <label
@@ -118,6 +117,9 @@ const RegisterPage = () => {
                     )}
                     {errors.password?.type === "minLength" && (
                         <p role="alert">Password is too small</p>
+                    )}
+                    {errors.password?.type === "maxLength" && (
+                        <p role="alert">Password is too big</p>
                     )}
                 </div>
                 <button

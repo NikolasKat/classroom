@@ -15,6 +15,7 @@ function App() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const authData = useSelector((state: unknown) => state.user.isAuth);
+    const loginData = useSelector((state: unknown) => state.user.isLogin);
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
@@ -23,12 +24,14 @@ function App() {
     }, []);
 
     useEffect(() => {
-        if (authData) {
+        if (authData && loginData) {
             navigate("/");
+        } else if (!loginData) {
+            navigate("/login");
         } else {
             navigate("/register");
         }
-    }, [authData]);
+    }, [authData, loginData]);
 
     return (
         <>
