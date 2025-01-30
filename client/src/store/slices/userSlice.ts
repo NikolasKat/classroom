@@ -1,29 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { IUser } from "../../models/IUser";
+import {
+    IUser,
+    IUserSlice,
+    LoginData,
+    RegistrationData,
+} from "../../models/interfaces";
 import AuthService from "../../services/AuthService";
 import axios from "axios";
 import { AuthResponse } from "../../models/response/AuthResponse";
 import { API_URL } from "../../http";
-import { set } from "react-hook-form";
-
-export interface IUserSlice {
-    user: IUser;
-    isAuth: boolean;
-    isLoading: boolean;
-    isLogin: boolean;
-}
-
-interface ILogin {
-    email: string;
-    password: string;
-}
-
-interface IRegistration {
-    email: string;
-    password: string;
-    firstName: string;
-    lastName: string;
-}
 
 const initialState: IUserSlice = {
     user: {} as IUser,
@@ -34,7 +19,7 @@ const initialState: IUserSlice = {
 
 export const login = createAsyncThunk(
     "user/login",
-    async function (data: ILogin, { rejectWithValue, dispatch }) {
+    async function (data: LoginData, { rejectWithValue, dispatch }) {
         try {
             const { email, password } = data;
             const response = await AuthService.login(email, password);
@@ -50,14 +35,15 @@ export const login = createAsyncThunk(
 
 export const registration = createAsyncThunk(
     "user/registration",
-    async function (data: IRegistration, { rejectWithValue, dispatch }) {
+    async function (data: RegistrationData, { rejectWithValue, dispatch }) {
         try {
-            const { email, password, firstName, lastName } = data;
+            const { email, password, firstName, lastName, img } = data;
             const response = await AuthService.registration(
                 email,
                 password,
                 firstName,
                 lastName,
+                img,
             );
             localStorage.setItem("token", response.data.accessToken);
             dispatch(setAuth(true));

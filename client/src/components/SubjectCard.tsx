@@ -1,19 +1,10 @@
 import { FC, useState } from "react";
 import { IoLogInOutline, IoLogOutOutline } from "react-icons/io5";
-
 import { Link } from "react-router-dom";
 import InfoALert from "./InfoALert";
+import { SubjectCardData } from "../models/interfaces";
 
-export interface ICardData {
-    id: string;
-    subjectName: string;
-    teacherName: string;
-    bgImg: string;
-    color: string;
-    isConnected: boolean;
-}
-
-const SubjectCard: FC<ICardData> = ({
+const SubjectCard: FC<SubjectCardData> = ({
     id,
     subjectName,
     teacherName,

@@ -15,12 +15,14 @@ export default class AuthService {
         password: string,
         firstName: string,
         lastName: string,
+        img?: string,
     ): Promise<AxiosResponse<AuthResponse>> {
         return $api.post<AuthResponse>("/registration", {
             email,
             password,
             firstName,
             lastName,
+            img,
         });
     }
 

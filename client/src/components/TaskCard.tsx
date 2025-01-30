@@ -1,27 +1,13 @@
 import { BiTask } from "react-icons/bi";
 import { BiTaskX } from "react-icons/bi";
 import { GrSchedule } from "react-icons/gr";
-// import { GoFileSubmodule } from "react-icons/go";
 import { SlChemistry } from "react-icons/sl";
 import { SlBookOpen } from "react-icons/sl";
 import { FC, useState } from "react";
 import InfoALert from "./InfoALert";
+import { ETypeOfTask, TaskCardData } from "../models/interfaces";
 
-export enum ETypeOfTask {
-    SCHEDULE = "schedule",
-    LAB = "lab",
-    NOTES = "notes",
-}
-
-interface ITaskData {
-    id: string;
-    title: string;
-    subjectName: string;
-    type: ETypeOfTask;
-    files: string[];
-}
-
-const TaskCard: FC<ITaskData> = ({ title, subjectName, type }) => {
+const TaskCard: FC<TaskCardData> = ({ title, subjectName, type }) => {
     const [isHover, setIsHover] = useState<boolean>(false);
     const [isCompleted, setIsCompleted] = useState<boolean>(false);
 

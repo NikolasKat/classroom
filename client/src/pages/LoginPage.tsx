@@ -2,8 +2,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { login } from "../store/slices/userSlice";
-import { LoginData } from "../interfaces";
 import { AppDispatch } from "../store/store";
+import { LoginData } from "../models/interfaces";
 
 const LoginPage = () => {
     const {

@@ -2,8 +2,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { registration } from "../store/slices/userSlice";
-import { RegistrationData } from "../interfaces";
 import { AppDispatch } from "../store/store";
+import { RegistrationData } from "../models/interfaces";
 
 const RegisterPage = () => {
     const {

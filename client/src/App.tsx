@@ -1,5 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Routes, Route, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "./store/store";
+import { checkAuth } from "./store/slices/userSlice";
 
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -8,10 +12,6 @@ import AllCoursesPage from "./pages/AllCoursesPage";
 import MyCoursesPage from "./pages/MyCoursesPage";
 import ClassmatesPage from "./pages/ClassmatesPage";
 import CoursePage from "./pages/CoursePage";
-import { useEffect } from "react";
-import { checkAuth } from "./store/slices/userSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "./store/store";
 
 function App() {
     const dispatch = useDispatch<AppDispatch>();

@@ -1,14 +1,9 @@
 import { FC, useState } from "react";
 import { BiSolidMessageEdit } from "react-icons/bi";
 import InfoALert from "./InfoALert";
+import { UserCardData } from "../models/interfaces";
 
-export interface UserData {
-    name: string;
-    surname: string;
-    img?: string;
-}
-
-const UserCard: FC<UserData> = ({ name, surname, img }) => {
+const UserCard: FC<UserCardData> = ({ firstName, lastName, img }) => {
     const [isLHover, setIsLHover] = useState<boolean>(false);
 
     return (
@@ -23,7 +18,7 @@ const UserCard: FC<UserData> = ({ name, surname, img }) => {
                 />
             )}
             <h3 className="mt-7 text-3xl font-semibold">
-                {surname} {name}
+                {firstName} {lastName}
             </h3>
             <div className="relative flex justify-center items-center">
                 <button

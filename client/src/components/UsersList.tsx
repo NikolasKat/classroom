@@ -3,18 +3,10 @@ import UserCard from "./UserCard";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
-
-// пока пусть будет так. Потом переделаем уже под бэк
-
-interface UserData {
-    _id: string;
-    email: string;
-    firstName: string;
-    lastName: string;
-}
+import { UserCardData } from "../models/interfaces";
 
 function SubjectList() {
-    const [usersData, setUsersData] = useState<UserData[]>([]);
+    const [usersData, setUsersData] = useState<UserCardData[]>([]);
 
     const userId = useSelector((state: RootState) => state.user.user.id);
 
@@ -35,11 +27,11 @@ function SubjectList() {
     return (
         <>
             <div className="flex justify-center gap-16 flex-wrap">
-                {usersData.map((item) => (
+                {usersData.map((item, i) => (
                     <UserCard
-                        key={item._id}
-                        name={item.lastName}
-                        surname={item.firstName}
+                        key={i}
+                        lastName={item.lastName}
+                        firstName={item.firstName}
                         img=""
                     />
                 ))}

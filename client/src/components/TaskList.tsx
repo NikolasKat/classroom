@@ -1,9 +1,7 @@
+import { ETypeOfTask, UserCardData } from "../models/interfaces";
 import TaskCard from "./TaskCard";
-import { ETypeOfTask } from "./TaskCard";
-import { UserData } from "./UserCard";
 
-// пока пусть будет так. Потом переделаем уже под бэк
-function SubjectList(props: UserData[]) {
+function SubjectList(props: UserCardData[]) {
     return (
         <>
             <div className="flex items-center flex-col gap-5">
