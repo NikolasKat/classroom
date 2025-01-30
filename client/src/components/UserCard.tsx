@@ -2,14 +2,13 @@ import { FC, useState } from "react";
 import { BiSolidMessageEdit } from "react-icons/bi";
 import InfoALert from "./InfoALert";
 
-interface UserData {
+export interface UserData {
     name: string;
     surname: string;
     img?: string;
-    score: number;
 }
 
-const UserCard: FC<UserData> = ({ name, surname, img, score }) => {
+const UserCard: FC<UserData> = ({ name, surname, img }) => {
     const [isLHover, setIsLHover] = useState<boolean>(false);
 
     return (
@@ -23,21 +22,20 @@ const UserCard: FC<UserData> = ({ name, surname, img, score }) => {
                     className="rounded-full mb-2"
                 />
             )}
-            <h3>
+            <h3 className="mt-7 text-3xl font-semibold">
                 {surname} {name}
             </h3>
-            <h4>Средний балл: {score}</h4>
             <div className="relative flex justify-center items-center">
                 <button
                     className="text-4xl mt-4"
                     onMouseEnter={() => {
-                        setIsLHover((isLHover) => true);
+                        setIsLHover((_isLHover) => true);
                     }}
                     onMouseLeave={() => {
-                        setIsLHover((isLHover) => false);
+                        setIsLHover((_isLHover) => false);
                     }}
                 >
-                    <BiSolidMessageEdit className="transition duration-200 ease-in-out hover:text-gray-500" />
+                    <BiSolidMessageEdit className="text-5xl transition duration-200 ease-in-out hover:text-gray-500" />
                 </button>
                 {isLHover ? (
                     <div className="absolute text-base top-[15px] left-1">

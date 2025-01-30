@@ -4,8 +4,8 @@ import { IoLogInOutline, IoLogOutOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import InfoALert from "./InfoALert";
 
-interface ICardData {
-    id: string | number;
+export interface ICardData {
+    id: string;
     subjectName: string;
     teacherName: string;
     bgImg: string;
@@ -44,10 +44,10 @@ const SubjectCard: FC<ICardData> = ({
                             <button
                                 className="text-4xl bg-transparent"
                                 onMouseEnter={() => {
-                                    setIsLHover((isLHover) => true);
+                                    setIsLHover((_isLHover) => true);
                                 }}
                                 onMouseLeave={() => {
-                                    setIsLHover((isLHover) => false);
+                                    setIsLHover((_isLHover) => false);
                                 }}
                             >
                                 {isConnected ? (

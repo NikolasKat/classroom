@@ -1,19 +1,46 @@
+import { useEffect, useState } from "react";
 import UserCard from "./UserCard";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 // пока пусть будет так. Потом переделаем уже под бэк
-const data = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+interface UserData {
+    _id: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+}
 
 function SubjectList() {
+    const [usersData, setUsersData] = useState<UserData[]>([]);
+
+    const userId = useSelector((state: RootState) => state.user.user.id);
+
+    useEffect(() => {
+        const getAds = async () => {
+            const response = await axios
+                .get("http://localhost:4444/api/client")
+                .then((response) =>
+                    response.data.filter(
+                        (item: unknown) => item._id !== userId,
+                    ),
+                )
+                .then((response) => setUsersData(response));
+        };
+        getAds();
+    }, []);
+
     return (
         <>
             <div className="flex justify-center gap-16 flex-wrap">
-                {data.map((item, i: number) => (
+                {usersData.map((item) => (
                     <UserCard
-                        key={i}
-                        name="Иван"
-                        surname="Иванов"
+                        key={item._id}
+                        name={item.lastName}
+                        surname={item.firstName}
                         img=""
-                        score={item}
                     />
                 ))}
             </div>

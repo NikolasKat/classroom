@@ -1,5 +1,4 @@
 module.exports = class UserDto {
-   // DTO === data transfer object
    email;
    id;
    isActivated;
@@ -10,3 +9,5 @@ module.exports = class UserDto {
       this.isActivated = model.isActivated;
    }
 };
+
+// DTO === data transfer object

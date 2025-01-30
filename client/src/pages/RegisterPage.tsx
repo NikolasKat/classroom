@@ -2,27 +2,25 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { registration } from "../store/slices/userSlice";
-
-interface NewUserData {
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-}
+import { RegistrationData } from "../interfaces";
+import { AppDispatch } from "../store/store";
 
 const RegisterPage = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
-    } = useForm<NewUserData>();
+    } = useForm<RegistrationData>();
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
-    const onSubmit: SubmitHandler<NewUserData> = (data) => {
+    const onSubmit: SubmitHandler<RegistrationData> = async (data) => {
         try {
-            dispatch(registration(data));
+            await dispatch(registration(data));
         } catch (error) {
+            alert("TYUYRTYU");
+            reset();
             console.log(error);
         }
     };

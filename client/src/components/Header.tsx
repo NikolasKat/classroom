@@ -4,10 +4,11 @@ import { useDispatch } from "react-redux";
 import { logout } from "../store/slices/userSlice";
 import InfoALert from "./InfoALert";
 import { useState } from "react";
+import { AppDispatch } from "../store/store";
 
 function Header() {
     const [isLHover, setIsLHover] = useState<boolean>(false);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
     return (
         <>
@@ -57,10 +58,10 @@ function Header() {
                                 className="text-5xl"
                                 onClick={() => dispatch(logout())}
                                 onMouseEnter={() => {
-                                    setIsLHover((isLHover) => true);
+                                    setIsLHover((_isLHover) => true);
                                 }}
                                 onMouseLeave={() => {
-                                    setIsLHover((isLHover) => false);
+                                    setIsLHover((_isLHover) => false);
                                 }}
                             >
                                 <IoLogOut />

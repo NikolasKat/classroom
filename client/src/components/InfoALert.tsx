@@ -1,8 +1,5 @@
 import { FC } from "react";
-
-interface AlertText {
-    text: string;
-}
+import { AlertText } from "../interfaces";
 
 const InfoALert: FC<AlertText> = ({ text }) => {
     return (

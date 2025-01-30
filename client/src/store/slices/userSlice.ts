@@ -4,6 +4,7 @@ import AuthService from "../../services/AuthService";
 import axios from "axios";
 import { AuthResponse } from "../../models/response/AuthResponse";
 import { API_URL } from "../../http";
+import { set } from "react-hook-form";
 
 export interface IUserSlice {
     user: IUser;
@@ -42,7 +43,6 @@ export const login = createAsyncThunk(
             dispatch(setLogin(true));
             dispatch(setUser(response.data.user));
         } catch (error) {
-            dispatch(setLogin(false));
             return rejectWithValue(error);
         }
     },
@@ -61,6 +61,7 @@ export const registration = createAsyncThunk(
             );
             localStorage.setItem("token", response.data.accessToken);
             dispatch(setAuth(true));
+            dispatch(setLogin(true));
             dispatch(setUser(response.data.user));
         } catch (error) {
             return rejectWithValue(error);
@@ -95,6 +96,7 @@ export const checkAuth = createAsyncThunk(
             );
             localStorage.setItem("token", response.data.accessToken);
             dispatch(setAuth(true));
+            dispatch(setLogin(true));
             dispatch(setUser(response.data.user));
         } catch (error) {
             return rejectWithValue(error);
@@ -120,6 +122,17 @@ export const userSlice = createSlice({
         setLogin(state, action) {
             state.isLogin = action.payload;
         },
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(login.rejected, (state) => {
+                state.isLogin = false;
+                throw new Error();
+            })
+            .addCase(registration.rejected, (state) => {
+                state.isAuth = false;
+                throw new Error();
+            });
     },
 });
 

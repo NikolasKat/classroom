@@ -22,6 +22,7 @@ class UserController {
             maxAge: 30 * 24 * 60 * 60 * 1000,
             httpOnly: true,
          });
+
          return res.json(userData);
       } catch (error) {
          next(error);
@@ -36,6 +37,7 @@ class UserController {
             maxAge: 30 * 24 * 60 * 60 * 1000,
             httpOnly: true,
          });
+
          return res.json(userData);
       } catch (error) {
          next(error);
@@ -47,6 +49,7 @@ class UserController {
          const { refreshToken } = req.cookies;
          const token = await userService.logout(refreshToken);
          res.clearCookie("refreshToken");
+
          return res.json(token);
       } catch (error) {
          next(error);
@@ -69,6 +72,7 @@ class UserController {
             maxAge: 30 * 24 * 60 * 60 * 1000,
             httpOnly: true,
          });
+
          return res.json(userData);
       } catch (error) {
          next(error);
@@ -78,6 +82,7 @@ class UserController {
    async getClient(req, res, next) {
       try {
          const users = await userService.getClient();
+
          return res.json(users);
       } catch (error) {
          next(error);

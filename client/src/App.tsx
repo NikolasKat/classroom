@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
@@ -10,12 +11,13 @@ import CoursePage from "./pages/CoursePage";
 import { useEffect } from "react";
 import { checkAuth } from "./store/slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "./store/store";
 
 function App() {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
-    const authData = useSelector((state: unknown) => state.user.isAuth);
-    const loginData = useSelector((state: unknown) => state.user.isLogin);
+    const authData = useSelector((state: RootState) => state.user.isAuth);
+    const loginData = useSelector((state: RootState) => state.user.isLogin);
 
     useEffect(() => {
         if (localStorage.getItem("token")) {

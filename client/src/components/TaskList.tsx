@@ -1,15 +1,16 @@
 import TaskCard from "./TaskCard";
 import { ETypeOfTask } from "./TaskCard";
+import { UserData } from "./UserCard";
 
 // пока пусть будет так. Потом переделаем уже под бэк
-function SubjectList({ data }) {
+function SubjectList(props: UserData[]) {
     return (
         <>
             <div className="flex items-center flex-col gap-5">
-                {data.map((item, i: number) => (
+                {props.map((_item, i: number) => (
                     <TaskCard
                         key={i}
-                        id={i}
+                        id={i.toString()}
                         title="Lecture notes"
                         subjectName="Math"
                         files={[]}

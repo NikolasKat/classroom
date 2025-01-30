@@ -2,25 +2,24 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { login } from "../store/slices/userSlice";
-
-interface UserData {
-    email: string;
-    password: string;
-}
+import { LoginData } from "../interfaces";
+import { AppDispatch } from "../store/store";
 
 const LoginPage = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
-    } = useForm<UserData>();
+    } = useForm<LoginData>();
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
-    const onSubmit: SubmitHandler<UserData> = (data) => {
+    const onSubmit: SubmitHandler<LoginData> = async (data) => {
         try {
-            dispatch(login(data));
+            await dispatch(login(data));
         } catch (error) {
+            reset();
             console.log(error);
         }
     };

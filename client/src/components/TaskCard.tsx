@@ -14,14 +14,14 @@ export enum ETypeOfTask {
 }
 
 interface ITaskData {
-    id: number | string | undefined;
+    id: string;
     title: string;
     subjectName: string;
     type: ETypeOfTask;
     files: string[];
 }
 
-const TaskCard: FC<ITaskData> = ({ id, title, subjectName, files, type }) => {
+const TaskCard: FC<ITaskData> = ({ title, subjectName, type }) => {
     const [isHover, setIsHover] = useState<boolean>(false);
     const [isCompleted, setIsCompleted] = useState<boolean>(false);
 
@@ -46,10 +46,10 @@ const TaskCard: FC<ITaskData> = ({ id, title, subjectName, files, type }) => {
             <button
                 className="transition duration-200 ease-in-out text-5xl hover:text-gray-500"
                 onMouseEnter={() => {
-                    setIsHover((isHover) => true);
+                    setIsHover((_isHover) => true);
                 }}
                 onMouseLeave={() => {
-                    setIsHover((isHover) => false);
+                    setIsHover((_isHover) => false);
                 }}
                 onClick={() => {
                     setIsCompleted((isCompleted) => !isCompleted);
