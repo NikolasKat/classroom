@@ -1,7 +1,12 @@
 export enum ETypeOfTask {
-    SCHEDULE = "schedule",
-    LAB = "lab",
-    NOTES = "notes",
+    SCHEDULE = "SCHEDULE",
+    LAB = "LAB",
+    NOTES = "NOTES",
+}
+
+export enum ERoles {
+    STUDENT = "STUDENT",
+    TEACHER = "TEACHER",
 }
 
 export interface AlertText {
@@ -13,6 +18,7 @@ export interface RegistrationData {
     lastName: string;
     email: string;
     password: string;
+    userRole: ERoles;
     img?: string;
 }
 
@@ -41,6 +47,7 @@ export interface TaskCardData {
 
 export interface IUser {
     email: string;
+    userRole: ERoles;
     isActivated: boolean;
     id: string;
 }

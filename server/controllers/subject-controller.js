@@ -1,0 +1,54 @@
+const subjectService = require("../service/subject-service");
+const { validationResult } = require("express-validator");
+const SubjectError = require("../exceptions/subject-error");
+
+class SubjectController {
+   async addSubject(req, res, next) {
+      try {
+         const errors = validationResult(req); // доделать  валидацию в роутах
+         if (!errors.isEmpty()) {
+            return next(
+               SubjectError.BadRequest("Ошибка при валидации", errors.array())
+            );
+         }
+         const { subjectName, teachers, tasks } = req.body;
+         const subjectData = await subjectService.addSubject(
+            subjectName,
+            teachers,
+            tasks
+         );
+
+         return res.json(subjectData);
+      } catch (error) {
+         next(error);
+      }
+   }
+
+   async removeSubject(req, res, next) {
+      try {
+         const errors = validationResult(req); // доделать  валидацию в роутах
+         if (!errors.isEmpty()) {
+            return next(
+               SubjectError.BadRequest("Ошибка при валидации", errors.array())
+            );
+         }
+         const { subjectName } = req.body;
+         const subjectData = await subjectService.removeSubject(subjectName);
+
+         return res.json(subjectData);
+      } catch (error) {
+         next(error);
+      }
+   }
+
+   async getSubjects(res, next) {
+      try {
+         const subjects = await subjectService.getSubjects();
+         return res.json(subjects);
+      } catch (error) {
+         next(error);
+      }
+   }
+}
+
+module.exports = new SubjectController();

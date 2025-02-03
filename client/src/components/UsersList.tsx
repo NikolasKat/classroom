@@ -27,14 +27,21 @@ function SubjectList() {
     return (
         <>
             <div className="flex justify-center gap-16 flex-wrap">
-                {usersData.map((item, i) => (
-                    <UserCard
-                        key={i}
-                        lastName={item.lastName}
-                        firstName={item.firstName}
-                        img=""
-                    />
-                ))}
+                {usersData.length ? (
+                    usersData.map((item, i) => (
+                        <UserCard
+                            key={i}
+                            lastName={item.lastName}
+                            firstName={item.firstName}
+                            img=""
+                        />
+                    ))
+                ) : (
+                    <div className="text-4xl text-center font-bold mt-64">
+                        Вы пока единственный пользователь! <br /> Поделитесь
+                        данным приложением со своими кентами :)
+                    </div>
+                )}
             </div>
         </>
     );

@@ -1,6 +1,7 @@
 import { AxiosResponse } from "axios";
 import $api from "../http";
 import { AuthResponse } from "../models/response/AuthResponse";
+import { ERoles } from "../models/interfaces";
 
 export default class AuthService {
     static async login(
@@ -15,6 +16,7 @@ export default class AuthService {
         password: string,
         firstName: string,
         lastName: string,
+        userRole: ERoles,
         img?: string,
     ): Promise<AxiosResponse<AuthResponse>> {
         return $api.post<AuthResponse>("/registration", {
@@ -22,6 +24,7 @@ export default class AuthService {
             password,
             firstName,
             lastName,
+            userRole,
             img,
         });
     }

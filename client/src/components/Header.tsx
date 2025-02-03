@@ -1,14 +1,21 @@
 import { Link } from "react-router-dom";
 import { IoLogOut } from "react-icons/io5";
-import { useDispatch } from "react-redux";
+import { BsPatchPlusFill } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../store/slices/userSlice";
 import InfoALert from "./InfoALert";
 import { useState } from "react";
-import { AppDispatch } from "../store/store";
+import { AppDispatch, RootState } from "../store/store";
+import { ERoles } from "../models/interfaces";
 
 function Header() {
+    const [isAHover, setIsAHover] = useState<boolean>(false);
     const [isLHover, setIsLHover] = useState<boolean>(false);
+
     const dispatch = useDispatch<AppDispatch>();
+    const roleStatus = useSelector(
+        (state: RootState) => state.user.user.userRole,
+    );
 
     return (
         <>
@@ -29,6 +36,26 @@ function Header() {
 
                 <nav className="flex items-center gap-5 mt-4">
                     <ul className="flex items-center gap-5 text-2xl">
+                        {roleStatus === ERoles.TEACHER ? (
+                            <div>
+                                <button
+                                    className="text-5xl"
+                                    onMouseEnter={() => {
+                                        setIsAHover((_isLHover) => true);
+                                    }}
+                                    onMouseLeave={() => {
+                                        setIsAHover((_isLHover) => false);
+                                    }}
+                                >
+                                    <BsPatchPlusFill />
+                                </button>
+                                {isAHover ? (
+                                    <div className="absolute text-lg">
+                                        <InfoALert text="Создать курс" />
+                                    </div>
+                                ) : null}
+                            </div>
+                        ) : null}
                         <li className="hover:text-gray-500">
                             <Link
                                 to="myCourses"
@@ -55,7 +82,7 @@ function Header() {
                         </li>
                         <div>
                             <button
-                                className="text-5xl"
+                                className="text-6xl"
                                 onClick={() => dispatch(logout())}
                                 onMouseEnter={() => {
                                     setIsLHover((_isLHover) => true);

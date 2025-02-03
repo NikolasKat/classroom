@@ -27,6 +27,7 @@ export const login = createAsyncThunk(
             dispatch(setAuth(true));
             dispatch(setLogin(true));
             dispatch(setUser(response.data.user));
+            console.log(response.data.user.userRole);
         } catch (error) {
             return rejectWithValue(error);
         }
@@ -37,12 +38,14 @@ export const registration = createAsyncThunk(
     "user/registration",
     async function (data: RegistrationData, { rejectWithValue, dispatch }) {
         try {
-            const { email, password, firstName, lastName, img } = data;
+            const { email, password, firstName, lastName, userRole, img } =
+                data;
             const response = await AuthService.registration(
                 email,
                 password,
                 firstName,
                 lastName,
+                userRole,
                 img,
             );
             localStorage.setItem("token", response.data.accessToken);

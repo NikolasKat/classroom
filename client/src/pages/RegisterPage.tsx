@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { registration } from "../store/slices/userSlice";
 import { AppDispatch } from "../store/store";
-import { RegistrationData } from "../models/interfaces";
+import { ERoles, RegistrationData } from "../models/interfaces";
 
 const RegisterPage = () => {
     const {
@@ -19,7 +19,7 @@ const RegisterPage = () => {
         try {
             await dispatch(registration(data));
         } catch (error) {
-            alert("TYUYRTYU");
+            alert("Проблемы регистрации!");
             reset();
             console.log(error);
         }
@@ -119,6 +119,25 @@ const RegisterPage = () => {
                     {errors.password?.type === "maxLength" && (
                         <p role="alert">Password is too big</p>
                     )}
+                </div>
+                <div className="relative z-0 w-full mb-5 group">
+                    <select
+                        className="block text-lg text-gray-900 bg-transparent"
+                        {...register("userRole", { required: true })}
+                    >
+                        <option
+                            className="block text-xl border-none py-2 px-5 w-auto"
+                            value={ERoles.STUDENT}
+                        >
+                            Student
+                        </option>
+                        <option
+                            className="block text-xl border-none py-2 px-5 w-auto"
+                            value={ERoles.TEACHER}
+                        >
+                            Teacher
+                        </option>
+                    </select>
                 </div>
                 <button
                     type="submit"
