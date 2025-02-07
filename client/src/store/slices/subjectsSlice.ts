@@ -1,13 +1,31 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { SubjectCardData } from "../../models/interfaces";
+import { SubjectData } from "../../models/interfaces";
+import SubjectService from "../../services/SubjectService";
+import store from "../store";
 
 const initialState = {
-    subjects: [] as SubjectCardData[],
+    subjects: [] as SubjectData[],
 };
 
 export const addSubject = createAsyncThunk(
     "subjects/addSubject",
-    async function () {},
+    async function (data: SubjectData, { rejectWithValue, dispatch }) {
+        try {
+            const { subjectName } = data;
+
+            const globalStore = store.getState();
+            const teacherID = globalStore.user.user.id;
+
+            const response = await SubjectService.addSubject(
+                subjectName,
+                teacherID,
+            );
+
+            dispatch(setSubjects(response.data.subjects));
+        } catch (error) {
+            return rejectWithValue(error);
+        }
+    },
 );
 
 export const deleteSubject = createAsyncThunk(
@@ -18,9 +36,13 @@ export const deleteSubject = createAsyncThunk(
 export const subjectsSlice = createSlice({
     name: "subjects",
     initialState,
-    reducers: {},
+    reducers: {
+        setSubjects(state, action) {
+            state.subjects = action.payload;
+        },
+    },
     // extraReducers(builder) {},
 });
 
-// export const {} = subjectsSlice.actions;
+export const { setSubjects } = subjectsSlice.actions;
 export default subjectsSlice.reducer;

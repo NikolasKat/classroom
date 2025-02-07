@@ -5,9 +5,9 @@ import { SlChemistry } from "react-icons/sl";
 import { SlBookOpen } from "react-icons/sl";
 import { FC, useState } from "react";
 import InfoALert from "./InfoALert";
-import { ETypeOfTask, TaskCardData } from "../models/interfaces";
+import { ETypeOfTask, TaskData } from "../models/interfaces";
 
-const TaskCard: FC<TaskCardData> = ({ title, subjectName, type }) => {
+const TaskCard: FC<TaskData> = ({ title, subjectName, type }) => {
     const [isHover, setIsHover] = useState<boolean>(false);
     const [isCompleted, setIsCompleted] = useState<boolean>(false);
 

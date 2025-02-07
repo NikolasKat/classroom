@@ -1,12 +1,14 @@
+import { useSelector } from "react-redux";
 import SubjectList from "../components/SubjectList";
-
-const data: number[] = [1, 2, 3, 4, 5, 9]; // я так понимаю, что сюда будем с бэка отправлять данные.
+import { RootState } from "../store/store";
 
 export default function MyCoursesPage() {
+    const data = useSelector((state: RootState) => state.subjects.subjects);
+
     return (
         <div className="px-9">
             {data.length ? (
-                <SubjectList data={data} />
+                <SubjectList />
             ) : (
                 <div className="flex flex-col items-center gap-7">
                     <h1 className="font-medium">У Вас нет активных курсов!</h1>

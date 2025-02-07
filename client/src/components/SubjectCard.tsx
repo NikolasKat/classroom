@@ -1,18 +1,11 @@
 import { FC, useState } from "react";
-import { IoLogInOutline, IoLogOutOutline } from "react-icons/io5";
+// import { IoLogInOutline, IoLogOutOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import InfoALert from "./InfoALert";
-import { SubjectCardData } from "../models/interfaces";
+// import InfoALert from "./InfoALert";
+import { SubjectData } from "../models/interfaces";
 
-const SubjectCard: FC<SubjectCardData> = ({
-    id,
-    subjectName,
-    teacherName,
-    bgImg,
-    color,
-    isConnected,
-}) => {
-    const [isLHover, setIsLHover] = useState<boolean>(false);
+const SubjectCard: FC<SubjectData> = ({ id, subjectName, bgImg, color }) => {
+    // const [isLHover, setIsLHover] = useState<boolean>(false);
 
     return (
         <>
@@ -29,10 +22,10 @@ const SubjectCard: FC<SubjectCardData> = ({
                             >
                                 {subjectName}
                             </Link>
-                            <h4 className="text-xl mt-3">{teacherName}</h4>
+                            {/* <h4 className="text-xl mt-3">{teacherName}</h4> */}
                         </div>
                         <div>
-                            <button
+                            {/* <button
                                 className="text-4xl bg-transparent"
                                 onMouseEnter={() => {
                                     setIsLHover((_isLHover) => true);
@@ -46,8 +39,8 @@ const SubjectCard: FC<SubjectCardData> = ({
                                 ) : (
                                     <IoLogInOutline className="transition duration-200 ease-in-out hover:text-gray-500" />
                                 )}
-                            </button>
-                            {isLHover ? (
+                            </button> */}
+                            {/* {isLHover ? (
                                 <div className="absolute top-6 right-20">
                                     <InfoALert
                                         text={
@@ -57,11 +50,11 @@ const SubjectCard: FC<SubjectCardData> = ({
                                         }
                                     />
                                 </div>
-                            ) : null}
+                            ) : null} */}
                         </div>
                     </div>
-                    <div className="p-6 flex justify-end border-t border-solid-black relative text-2xl">
-                        {/* <Link
+                    {/* <div className="p-6 flex justify-end border-t border-solid-black relative text-2xl">
+                        <Link
                             to="#"
                             className="text-4xl bg-transparent hover:text-gray-600"
                             onMouseEnter={() => {
@@ -77,14 +70,14 @@ const SubjectCard: FC<SubjectCardData> = ({
                             <div className="absolute top-6 right-20">
                                 <InfoALert text="Твоя статистика" />
                             </div>
-                        ) : null} */}
-                    </div>
-                    <div
+                        ) : null}
+                    </div> */}
+                    {/* <div
                         style={{ backgroundColor: color }}
                         className="absolute right-3 top-24 w-[100px] h-[100px] flex justify-center pt-2 rounded-full text-7xl font-normal text-white"
                     >
                         {teacherName.slice(0, 1)}
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </>

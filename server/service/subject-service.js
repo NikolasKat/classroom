@@ -1,18 +1,24 @@
 const SubjectModel = require("../models/subject-model");
+const UserModel = require("../models/user-model");
 const SubjectError = require("../exceptions/subject-error");
 
 class SubjectService {
-   async addSubject(subjectName, teachers, tasks) {
-      const candidate = await SubjectModel.findOne({ subjectName });
-      if (candidate) {
+   async addSubject(subjectName, teacherID) {
+      const existSubject = await SubjectModel.findOne({ subjectName });
+      const candidate = await UserModel.findOne({ _id: teacherID });
+      if (existSubject) {
          throw SubjectError.BadRequest(
             `Предмет с названием ${subjectName} уже существует!`
          );
       }
+
       const subject = await SubjectModel.create({
          subjectName,
-         teachers,
-         tasks,
+         teacher: {
+            email: candidate.email,
+            firstName: candidate.firstName,
+            lastName: candidate.lastName,
+         },
       });
 
       return {

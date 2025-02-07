@@ -11,11 +11,11 @@ class SubjectController {
                SubjectError.BadRequest("Ошибка при валидации", errors.array())
             );
          }
-         const { subjectName, teachers, tasks } = req.body;
+         const { subjectName, teacherID } = req.body;
+
          const subjectData = await subjectService.addSubject(
             subjectName,
-            teachers,
-            tasks
+            teacherID
          );
 
          return res.json(subjectData);
@@ -41,9 +41,10 @@ class SubjectController {
       }
    }
 
-   async getSubjects(res, next) {
+   async getSubjects(req, res, next) {
       try {
          const subjects = await subjectService.getSubjects();
+
          return res.json(subjects);
       } catch (error) {
          next(error);

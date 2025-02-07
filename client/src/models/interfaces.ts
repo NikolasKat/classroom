@@ -28,16 +28,15 @@ export type UserCardData = Pick<
     "firstName" | "lastName" | "img"
 >;
 
-export interface SubjectCardData {
+export interface SubjectData {
     id: string;
     subjectName: string;
-    teacherName: string;
+    teacherEmail: string;
     bgImg: string;
     color: string;
-    isConnected: boolean;
 }
 
-export interface TaskCardData {
+export interface TaskData {
     id: string;
     title: string;
     subjectName: string;

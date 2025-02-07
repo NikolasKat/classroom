@@ -21,6 +21,6 @@ router.get("/client", authMiddleware, userController.getClient);
 // routing for Subjects
 router.post("/addSubject", subjectController.addSubject);
 router.delete("/deleteSubject", subjectController.removeSubject);
-router.get("/getSubjects", authMiddleware, subjectController.getSubjects);
+router.get("/getSubjects", subjectController.getSubjects);
 
 module.exports = router;

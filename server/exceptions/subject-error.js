@@ -9,6 +9,6 @@ module.exports = class SubjectError extends Error {
    }
 
    static BadRequest(message, errors = []) {
-      return new ApiError(400, message, errors);
+      return new SubjectError(400, message, errors);
    }
 };

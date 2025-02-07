@@ -7,10 +7,13 @@ import InfoALert from "./InfoALert";
 import { useState } from "react";
 import { AppDispatch, RootState } from "../store/store";
 import { ERoles } from "../models/interfaces";
+import SubjectForm from "./SubjectForm";
 
 function Header() {
     const [isAHover, setIsAHover] = useState<boolean>(false);
     const [isLHover, setIsLHover] = useState<boolean>(false);
+
+    const [isFormClicked, setIsFormClicked] = useState<boolean>(false);
 
     const dispatch = useDispatch<AppDispatch>();
     const roleStatus = useSelector(
@@ -46,6 +49,11 @@ function Header() {
                                     onMouseLeave={() => {
                                         setIsAHover((_isLHover) => false);
                                     }}
+                                    onClick={() =>
+                                        setIsFormClicked(
+                                            (isFormClicked) => !isFormClicked,
+                                        )
+                                    }
                                 >
                                     <BsPatchPlusFill />
                                 </button>
@@ -103,6 +111,7 @@ function Header() {
                 </nav>
             </header>
             <hr className="mb-9" />
+            {isFormClicked ? <SubjectForm /> : null}
         </>
     );
 }
