@@ -28,12 +28,26 @@ export type UserCardData = Pick<
     "firstName" | "lastName" | "img"
 >;
 
-export interface SubjectData {
+export interface ConnectedUsers {
     id: string;
+    lastName: string;
+}
+
+interface Tasks {
+    type: ETypeOfTask;
+    name: string;
+}
+
+export interface SubjectData {
     subjectName: string;
-    teacherEmail: string;
-    bgImg: string;
-    color: string;
+    teacher: {
+        email: string;
+        firstName: string;
+        lastName: string;
+    };
+    connectedUsers: ConnectedUsers[];
+    tasks: Tasks[];
+    _id: string;
 }
 
 export interface TaskData {

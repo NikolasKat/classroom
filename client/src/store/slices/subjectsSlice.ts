@@ -9,7 +9,7 @@ const initialState = {
 
 export const addSubject = createAsyncThunk(
     "subjects/addSubject",
-    async function (data: SubjectData, { rejectWithValue, dispatch }) {
+    async function (data: unknown, { rejectWithValue, dispatch }) {
         try {
             const { subjectName } = data;
 

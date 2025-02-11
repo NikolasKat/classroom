@@ -21,6 +21,7 @@ class UserService {
          firstName,
          lastName,
          activationLink: activationLink,
+         isActivated: true,
          userRole,
       });
       const userDto = new UserDto(user);
@@ -63,6 +64,7 @@ class UserService {
       }
       const userData = tokenService.validateRefreshToken(refreshToken);
       const tokenFromDB = await tokenService.findToken(refreshToken);
+
       if (!userData || !tokenFromDB) {
          throw ApiError.UnauthorizedError();
       }

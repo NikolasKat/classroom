@@ -12,7 +12,6 @@ class SubjectController {
             );
          }
          const { subjectName, teacherID } = req.body;
-
          const subjectData = await subjectService.addSubject(
             subjectName,
             teacherID

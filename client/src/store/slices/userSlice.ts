@@ -9,6 +9,7 @@ import AuthService from "../../services/AuthService";
 import axios from "axios";
 import { AuthResponse } from "../../models/response/AuthResponse";
 import { API_URL } from "../../http";
+import { data } from "react-router-dom";
 
 const initialState: IUserSlice = {
     user: {} as IUser,

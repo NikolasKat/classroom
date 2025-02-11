@@ -1,43 +1,47 @@
-import SubjectCard from "./SubjectCard";
-import { useEffect } from "react";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { addSubject } from "../store/slices/subjectsSlice";
-import { AppDispatch, RootState } from "../store/store";
+import { useEffect, useState } from "react";
+import { AppDispatch } from "../store/store";
+import { useDispatch } from "react-redux";
+import { SubjectData } from "../models/interfaces";
+import SubjectCard from "./SubjectCard";
 
 function SubjectList() {
+    const [state, setState] = useState([]);
     const dispatch = useDispatch<AppDispatch>();
-    const subjectsData = useSelector(
-        (state: RootState) => state.subjects.subjects,
-    );
 
     useEffect(() => {
         const getAds = async () => {
             const response = await axios
                 .get("http://localhost:4444/api/getSubjects")
                 .then((response) => {
-                    console.log("MY DATA", response.data);
-                    dispatch(addSubject(response.data));
+                    setState(response.data);
                 });
         };
         getAds();
-    }, [dispatch, subjectsData]);
+    }, [dispatch]);
 
     return (
         <>
-            <div className="flex justify-center gap-16 flex-wrap">
-                {subjectsData.map((item, i: number) => (
-                    <SubjectCard
-                        key={i}
-                        color="#106464"
-                        bgImg="#cfdf68"
-                        subjectName={item.subjectName}
-                        teacherEmail=""
-                        // teacherName={item.teacherEmail}
-                        id={item.id}
-                    />
-                ))}
-            </div>
+            {state.length ? (
+                <div className="flex justify-center gap-16 flex-wrap">
+                    {state.map((item: SubjectData, i: number) => (
+                        <SubjectCard
+                            key={i}
+                            id={item._id}
+                            teacherName={item.teacher.lastName}
+                            subjectName={item.subjectName}
+                            connectedUsers={item.connectedUsers}
+                            color="#129941e2"
+                        />
+                    ))}
+                </div>
+            ) : (
+                <div className="flex flex-col items-center gap-7">
+                    <h1 className="font-medium">
+                        На данный момент нет открытых курсов!!
+                    </h1>
+                </div>
+            )}
         </>
     );
 }

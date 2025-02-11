@@ -13,12 +13,12 @@ const TaskSchema = new Schema({
 const SubjectSchema = new Schema({
    subjectName: { type: String, unique: true, required: true },
    teacher: {
-      email: { type: String, unique: true, required: true },
+      email: { type: String, required: true },
       firstName: { type: String, required: true },
       lastName: { type: String, required: true },
    },
-   connectedUsers: { body: [ConnectedStudentsSchema], default: [] },
-   tasks: { body: [TaskSchema], default: [] },
+   connectedUsers: [ConnectedStudentsSchema],
+   tasks: [TaskSchema],
 });
 
 module.exports = model("Subject", SubjectSchema);
