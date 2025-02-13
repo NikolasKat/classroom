@@ -3,9 +3,13 @@ import { Link } from "react-router-dom";
 import InfoALert from "./InfoALert";
 import { FC, useEffect, useState } from "react";
 import { MdOutlineAccessibilityNew } from "react-icons/md";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { ConnectedUsers } from "../models/interfaces";
+import {
+    connectStudent,
+    disconnectStudent,
+} from "../store/slices/subjectsSlice";
 
 interface SubjectCardProps {
     subjectName: string;
@@ -19,6 +23,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
     subjectName,
     teacherName,
     color,
+    id,
     connectedUsers,
 }) => {
     const [isSHover, setIsSHover] = useState<boolean>(false);
@@ -26,12 +31,14 @@ const SubjectCard: FC<SubjectCardProps> = ({
     const [isJoin, setIsJoin] = useState<boolean>(false);
 
     const userId = useSelector((state: RootState) => state.user.user.id);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (!connectedUsers.length || typeof connectedUsers !== "object") {
             setIsJoin((_isJoin) => true);
         }
         const candidate = connectedUsers.find((item) => item.id === userId);
+
         setIsJoin((_isJoin) => !!candidate);
     }, [connectedUsers, userId]);
 
@@ -61,6 +68,9 @@ const SubjectCard: FC<SubjectCardProps> = ({
                                 onMouseLeave={() => {
                                     setIsLHover((_isLHover) => false);
                                 }}
+                                onClick={() =>
+                                    dispatch(disconnectStudent({ id: id }))
+                                }
                             >
                                 {isJoin ? (
                                     <IoLogOutOutline className="transition duration-200 ease-in-out hover:text-gray-500" />

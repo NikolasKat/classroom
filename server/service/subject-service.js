@@ -26,22 +26,78 @@ class SubjectService {
       };
    }
 
-   async removeSubject(subjName) {
-      const candidate = await SubjectModel.findOne({ subjName });
-      if (!candidate) {
-         throw SubjectError.BadRequest(
-            `Предмета с названием ${subjName} не существует! Удаление невозможно!`
+   async connectStudent(subjectId, userId) {
+      try {
+         const candidate = await UserModel.findById({ _id: userId });
+         const isUserExist = subjectFromBD.connectedUsers.find(
+            (item) => item._id == userId
          );
+         if (isUserExist) {
+            throw SubjectError.BadRequest(
+               `Вы уже зарегистрированы на этот курс!`
+            );
+         }
+         const updatedSubject = await SubjectModel.findByIdAndUpdate(
+            { _id: subjectId },
+            {
+               $addToSet: {
+                  connectedUsers: { _id: userId, lastName: candidate.lastName },
+               },
+            },
+            { new: true }
+         );
+
+         return { updatedSubject };
+      } catch (error) {
+         console.log(error);
       }
-
-      const subject = await SubjectModel.deleteOne({
-         subjectName: subjName,
-      });
-
-      return {
-         subject: subject,
-      };
    }
+
+   async disconnectStudent(subjectId, userId) {
+      try {
+         const subjectFromBD = await SubjectModel.findById({ _id: subjectId });
+         if (!subjectFromBD) {
+            throw SubjectError.BadRequest("Данный курс не был найден!");
+         }
+         const isUserExist = subjectFromBD.connectedUsers.find(
+            (item) => item._id == userId
+         );
+         if (!isUserExist) {
+            throw SubjectError.BadRequest(
+               `Вы не зарегистрированы на этот курс!`
+            );
+         }
+         const updatedSubjectData = subjectFromBD.connectedUsers.filter(
+            (item) => item._id != userId
+         );
+         const newData = await SubjectModel.findByIdAndUpdate(
+            { _id: subjectId },
+            { $set: { connectedUsers: updatedSubjectData } },
+            { new: true }
+         );
+
+         return { newData };
+      } catch (error) {
+         console.log(error);
+      }
+   }
+
+   // async removeSubject(subjName) {
+   //    const candidate = await SubjectModel.findOne({ subjName });
+   //    if (!candidate) {
+   //       throw SubjectError.BadRequest(
+   //          `Предмета с названием ${subjName} не существует! Удаление невозможно!`
+   //       );
+   //    }
+
+   //    const subject = await SubjectModel.deleteOne({
+   //       subjectName: subjName,
+   //    });
+
+   //    return {
+   //       subject: subject,
+   //    };
+   // }
 
    async getSubjects() {
       const subjects = await SubjectModel.find();

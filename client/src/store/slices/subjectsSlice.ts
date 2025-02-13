@@ -28,10 +28,38 @@ export const addSubject = createAsyncThunk(
     },
 );
 
-export const deleteSubject = createAsyncThunk(
-    "subjects/deleteSubject",
-    async function () {},
+export const connectStudent = createAsyncThunk(
+    "subjects/connectStudent",
+    async function (data, { rejectWithValue, dispatch }) {
+        try {
+            const { id } = data;
+            const globalStore = store.getState();
+            const userId = globalStore.user.user.id;
+            const response = await SubjectService.connectStudent(id, userId);
+        } catch (error) {
+            return rejectWithValue(error);
+        }
+    },
 );
+
+export const disconnectStudent = createAsyncThunk(
+    "subjects/disconnectStudent",
+    async function (data, { rejectWithValue, dispatch }) {
+        try {
+            const { id } = data;
+            const globalStore = store.getState();
+            const userId = globalStore.user.user.id;
+            const response = await SubjectService.disconnectStudent(id, userId);
+        } catch (error) {
+            return rejectWithValue(error);
+        }
+    },
+);
+
+// export const deleteSubject = createAsyncThunk(
+//     "subjects/deleteSubject",
+//     async function () {},
+// );
 
 export const subjectsSlice = createSlice({
     name: "subjects",

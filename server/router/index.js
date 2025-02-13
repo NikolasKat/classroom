@@ -20,7 +20,9 @@ router.get("/client", authMiddleware, userController.getClient);
 
 // routing for Subjects
 router.post("/addSubject", subjectController.addSubject);
-router.delete("/deleteSubject", subjectController.removeSubject);
+router.put("/connectStudent", subjectController.connectStudent);
+router.put("/disconnectStudent", subjectController.disconnectStudent);
+// router.delete("/deleteSubject", subjectController.removeSubject);
 router.get("/getSubjects", subjectController.getSubjects);
 
 module.exports = router;

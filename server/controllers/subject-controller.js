@@ -23,22 +23,50 @@ class SubjectController {
       }
    }
 
-   async removeSubject(req, res, next) {
+   async connectStudent(req, res, next) {
       try {
-         const errors = validationResult(req); // доделать  валидацию в роутах
-         if (!errors.isEmpty()) {
-            return next(
-               SubjectError.BadRequest("Ошибка при валидации", errors.array())
-            );
-         }
-         const { subjectName } = req.body;
-         const subjectData = await subjectService.removeSubject(subjectName);
+         const { subjectId, userId } = req.body;
+         const updatedData = await subjectService.connectStudent(
+            subjectId,
+            userId
+         );
 
-         return res.json(subjectData);
+         return res.json(updatedData);
       } catch (error) {
          next(error);
       }
    }
+
+   async disconnectStudent(req, res, next) {
+      try {
+         const { subjectId, userId } = req.body;
+         const updatedData = await subjectService.disconnectStudent(
+            subjectId,
+            userId
+         );
+
+         return res.json(updatedData);
+      } catch (error) {
+         next(error);
+      }
+   }
+
+   // async removeSubject(req, res, next) {
+   //    try {
+   //       const errors = validationResult(req); // доделать  валидацию в роутах
+   //       if (!errors.isEmpty()) {
+   //          return next(
+   //             SubjectError.BadRequest("Ошибка при валидации", errors.array())
+   //          );
+   //       }
+   //       const { subjectName } = req.body;
+   //       const subjectData = await subjectService.removeSubject(subjectName);
+
+   //       return res.json(subjectData);
+   //    } catch (error) {
+   //       next(error);
+   //    }
+   // }
 
    async getSubjects(req, res, next) {
       try {

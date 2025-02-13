@@ -12,4 +12,16 @@ export default class SubjectService {
             teacherID,
         });
     }
+    static async connectStudent(
+        subjectId: string,
+        userId: string,
+    ): Promise<AxiosResponse<SubjectCreateResponse>> {
+        return $api.put("/connectStudent", { subjectId, userId });
+    }
+    static async disconnectStudent(
+        subjectId: string,
+        userId: string,
+    ): Promise<AxiosResponse<SubjectCreateResponse>> {
+        return $api.put("/disconnectStudent", { subjectId, userId });
+    }
 }
