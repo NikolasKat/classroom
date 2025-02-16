@@ -8,6 +8,7 @@ import {
     connectStudent,
     disconnectStudent,
 } from "../store/slices/subjectsSlice";
+import { AppDispatch } from "../store/store";
 
 interface SubjectCardProps {
     subjectName: string;
@@ -27,8 +28,6 @@ const SubjectCard: FC<SubjectCardProps> = ({
     const [isSHover, setIsSHover] = useState<boolean>(false);
     const [isLHover, setIsLHover] = useState<boolean>(false);
     const dispatch = useDispatch();
-
-    console.log("isUserConnected = ", isUserConnected);
 
     return (
         <>
@@ -56,13 +55,15 @@ const SubjectCard: FC<SubjectCardProps> = ({
                                 onMouseLeave={() => {
                                     setIsLHover((_isLHover) => false);
                                 }}
-                                onClick={() =>
-                                    isUserConnected
-                                        ? dispatch(
-                                              disconnectStudent({ id: id }),
-                                          )
-                                        : dispatch(connectStudent({ id: id }))
-                                }
+                                onClick={() => {
+                                    if (isUserConnected) {
+                                        dispatch(disconnectStudent({ id: id }));
+                                        window.location.reload();
+                                    } else {
+                                        dispatch(connectStudent({ id: id }));
+                                        window.location.reload();
+                                    }
+                                }}
                             >
                                 {isUserConnected ? (
                                     <IoLogOutOutline className="transition duration-200 ease-in-out hover:text-gray-500" />

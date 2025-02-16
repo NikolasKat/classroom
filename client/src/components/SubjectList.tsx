@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { AppDispatch, RootState } from "../store/store";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,7 +18,7 @@ function SubjectList() {
 
     return (
         <>
-            {courses.length ? (
+            {courses?.length ? (
                 <div className="flex justify-center gap-16 flex-wrap">
                     {courses.map((item: SubjectData, i: number) => (
                         <SubjectCard

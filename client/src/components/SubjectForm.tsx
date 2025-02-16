@@ -17,6 +17,7 @@ const SubjectForm = () => {
     const onSubmit: SubmitHandler<SubjectData> = async (data) => {
         try {
             await dispatch(addSubject(data));
+            window.location.reload();
         } catch (error) {
             alert("Проблемы присоздании курса!");
             reset();
