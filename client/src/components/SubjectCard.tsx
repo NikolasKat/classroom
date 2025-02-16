@@ -1,11 +1,9 @@
 import { IoLogInOutline, IoLogOutOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import InfoALert from "./InfoALert";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { MdOutlineAccessibilityNew } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store/store";
-import { ConnectedUsers } from "../models/interfaces";
+import { useDispatch } from "react-redux";
 import {
     connectStudent,
     disconnectStudent,
@@ -16,7 +14,7 @@ interface SubjectCardProps {
     teacherName: string;
     color: string;
     id: string;
-    connectedUsers: ConnectedUsers[];
+    isUserConnected: boolean;
 }
 
 const SubjectCard: FC<SubjectCardProps> = ({
@@ -24,23 +22,13 @@ const SubjectCard: FC<SubjectCardProps> = ({
     teacherName,
     color,
     id,
-    connectedUsers,
+    isUserConnected,
 }) => {
     const [isSHover, setIsSHover] = useState<boolean>(false);
     const [isLHover, setIsLHover] = useState<boolean>(false);
-    const [isJoin, setIsJoin] = useState<boolean>(false);
-
-    const userId = useSelector((state: RootState) => state.user.user.id);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        if (!connectedUsers.length || typeof connectedUsers !== "object") {
-            setIsJoin((_isJoin) => true);
-        }
-        const candidate = connectedUsers.find((item) => item.id === userId);
-
-        setIsJoin((_isJoin) => !!candidate);
-    }, [connectedUsers, userId]);
+    console.log("isUserConnected = ", isUserConnected);
 
     return (
         <>
@@ -69,10 +57,14 @@ const SubjectCard: FC<SubjectCardProps> = ({
                                     setIsLHover((_isLHover) => false);
                                 }}
                                 onClick={() =>
-                                    dispatch(disconnectStudent({ id: id }))
+                                    isUserConnected
+                                        ? dispatch(
+                                              disconnectStudent({ id: id }),
+                                          )
+                                        : dispatch(connectStudent({ id: id }))
                                 }
                             >
-                                {isJoin ? (
+                                {isUserConnected ? (
                                     <IoLogOutOutline className="transition duration-200 ease-in-out hover:text-gray-500" />
                                 ) : (
                                     <IoLogInOutline className="transition duration-200 ease-in-out hover:text-gray-500" />
@@ -82,7 +74,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
                                 <div className="absolute top-6 right-20">
                                     <InfoALert
                                         text={
-                                            isJoin
+                                            isUserConnected
                                                 ? "Покинуть курс"
                                                 : "Присоединиться к курсу"
                                         }

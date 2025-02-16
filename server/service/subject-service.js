@@ -29,6 +29,7 @@ class SubjectService {
    async connectStudent(subjectId, userId) {
       try {
          const candidate = await UserModel.findById({ _id: userId });
+         const subjectFromBD = await SubjectModel.findById({ _id: subjectId });
          const isUserExist = subjectFromBD.connectedUsers.find(
             (item) => item._id == userId
          );

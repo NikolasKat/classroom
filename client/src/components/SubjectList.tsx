@@ -1,37 +1,36 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { AppDispatch } from "../store/store";
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { AppDispatch, RootState } from "../store/store";
+import { useDispatch, useSelector } from "react-redux";
 import { SubjectData } from "../models/interfaces";
 import SubjectCard from "./SubjectCard";
+import { fetchCourses } from "../store/slices/subjectsSlice";
 
 function SubjectList() {
-    const [state, setState] = useState([]);
     const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
-        const getAds = async () => {
-            const response = await axios
-                .get("http://localhost:4444/api/getSubjects")
-                .then((response) => {
-                    setState(response.data);
-                });
-        };
-        getAds();
-    }, [dispatch]);
+        dispatch(fetchCourses());
+    }, []);
+
+    const courses = useSelector((state: RootState) => state.subjects.subjects);
+    const userId = useSelector((state: RootState) => state.user.user.id);
 
     return (
         <>
-            {state.length ? (
+            {courses.length ? (
                 <div className="flex justify-center gap-16 flex-wrap">
-                    {state.map((item: SubjectData, i: number) => (
+                    {courses.map((item: SubjectData, i: number) => (
                         <SubjectCard
                             key={i}
                             id={item._id}
                             teacherName={item.teacher.lastName}
                             subjectName={item.subjectName}
-                            connectedUsers={item.connectedUsers}
                             color="#129941e2"
+                            isUserConnected={
+                                !!item.connectedUsers.some(
+                                    (item) => item._id == userId,
+                                )
+                            }
                         />
                     ))}
                 </div>

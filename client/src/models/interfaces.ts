@@ -29,7 +29,7 @@ export type UserCardData = Pick<
 >;
 
 export interface ConnectedUsers {
-    id: string;
+    _id: string;
     lastName: string;
 }
 
