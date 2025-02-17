@@ -25,7 +25,7 @@ export interface RegistrationData {
 export type LoginData = Pick<RegistrationData, "email" | "password">;
 export type UserCardData = Pick<
     RegistrationData,
-    "firstName" | "lastName" | "img"
+    "firstName" | "lastName" | "img" | "userRole"
 >;
 
 export interface ConnectedUsers {

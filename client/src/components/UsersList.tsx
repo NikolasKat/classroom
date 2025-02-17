@@ -34,6 +34,7 @@ function SubjectList() {
                             lastName={item.lastName}
                             firstName={item.firstName}
                             img=""
+                            userRole={item.userRole}
                         />
                     ))
                 ) : (

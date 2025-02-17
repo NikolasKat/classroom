@@ -39,7 +39,17 @@ function App() {
         <>
             <Routes>
                 <Route path="/" element={<HomePage />}>
-                    <Route index element={<div>home </div>}></Route>
+                    <Route
+                        index
+                        element={
+                            <div>
+                                <h1 className="px-9">
+                                    Здесь должна была быть красивая страничка
+                                    профиля, но Саша учит Пайтон!
+                                </h1>
+                            </div>
+                        }
+                    ></Route>
                     <Route
                         path="allCourses"
                         element={<AllCoursesPage />}

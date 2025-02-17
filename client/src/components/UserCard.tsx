@@ -1,13 +1,17 @@
 import { FC, useState } from "react";
+import { LiaChalkboardTeacherSolid } from "react-icons/lia";
+import { PiStudentFill } from "react-icons/pi";
 import { BiSolidMessageEdit } from "react-icons/bi";
 import InfoALert from "./InfoALert";
 import { UserCardData } from "../models/interfaces";
 
-const UserCard: FC<UserCardData> = ({ firstName, lastName, img }) => {
+const UserCard: FC<UserCardData> = ({ firstName, lastName, img, userRole }) => {
     const [isLHover, setIsLHover] = useState<boolean>(false);
 
+    console.log(userRole);
+
     return (
-        <div className="relative w-[360px] bg-slate-100 rounded-2xl py-9 px-7 text-center text-2xl font-medium">
+        <div className="relative w-[380px] bg-slate-100 rounded-2xl py-9 px-7 text-center text-2xl font-medium">
             {img ? (
                 <img src={img} alt="user-img" className="rounded-full mb-2" />
             ) : (
@@ -37,6 +41,13 @@ const UserCard: FC<UserCardData> = ({ firstName, lastName, img }) => {
                         <InfoALert text="Написать" />
                     </div>
                 ) : null}
+            </div>
+            <div className="absolute top-1 right-2 text-5xl rounded-full p-3">
+                {userRole === "STUDENT" ? (
+                    <PiStudentFill />
+                ) : (
+                    <LiaChalkboardTeacherSolid />
+                )}
             </div>
         </div>
     );
