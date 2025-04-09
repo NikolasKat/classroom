@@ -12,6 +12,7 @@ import AllCoursesPage from "./pages/AllCoursesPage";
 import MyCoursesPage from "./pages/MyCoursesPage";
 import ClassmatesPage from "./pages/ClassmatesPage";
 import CoursePage from "./pages/CoursePage";
+import Profile from "./components/Profile";
 
 function App() {
     const dispatch = useDispatch<AppDispatch>();
@@ -39,17 +40,7 @@ function App() {
         <>
             <Routes>
                 <Route path="/" element={<HomePage />}>
-                    <Route
-                        index
-                        element={
-                            <div>
-                                <h1 className="px-9">
-                                    Здесь должна была быть красивая страничка
-                                    профиля, но Саша учит Пайтон!
-                                </h1>
-                            </div>
-                        }
-                    ></Route>
+                    <Route index element={<Profile />}></Route>
                     <Route
                         path="allCourses"
                         element={<AllCoursesPage />}
