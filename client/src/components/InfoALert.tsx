@@ -4,7 +4,7 @@ import { AlertText } from "../models/interfaces";
 const InfoALert: FC<AlertText> = ({ text }) => {
     return (
         <div
-            className="z-10 w-fit flex items-center h-8 p-3 text-md text-black rounded-lg bg-blue-100"
+            className="hidden z-10 w-fit lg:flex items-center h-8 p-3 text-md text-black rounded-lg bg-blue-100"
             role="alert"
         >
             <svg

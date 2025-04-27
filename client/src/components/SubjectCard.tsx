@@ -8,7 +8,7 @@ import {
     connectStudent,
     disconnectStudent,
 } from "../store/slices/subjectsSlice";
-import { AppDispatch } from "../store/store";
+// import { AppDispatch } from "../store/store";
 
 interface SubjectCardProps {
     subjectName: string;
@@ -32,7 +32,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
     return (
         <>
             <div className="flex relative bg-slate-100 rounded-3xl border border-solid-black">
-                <div className="flex flex-col justify-between min-w-[450px] min-h-[350px] font-medium relative">
+                <div className="flex flex-col justify-between font-medium relative w-[260px] h-[240px] md:w-[450px] md:h-[350px]">
                     <div
                         style={{ backgroundColor: "#dfe442" }}
                         className="flex justify-between p-6 rounded-t-xl"
@@ -40,11 +40,13 @@ const SubjectCard: FC<SubjectCardProps> = ({
                         <div>
                             <Link
                                 to={`/${subjectName}`}
-                                className="transition duration-200 ease-in-out text-4xl hover:text-gray-500"
+                                className="transition duration-200 ease-in-out text-xl md:text-4xl hover:text-gray-500"
                             >
                                 {subjectName}
                             </Link>
-                            <h4 className="text-xl mt-3">{teacherName}</h4>
+                            <h4 className="text-base md:text-xl mt-1 md:mt-3">
+                                {teacherName}
+                            </h4>
                         </div>
                         <div>
                             <button
@@ -87,7 +89,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
                     <div className="p-6 flex justify-end border-t border-solid-black relative text-2xl">
                         <Link
                             to="#"
-                            className="text-4xl bg-transparent hover:text-gray-600"
+                            className="text-3xl md:text-4xl bg-transparent hover:text-gray-600"
                             onMouseEnter={() => {
                                 setIsSHover((_isSHover) => true);
                             }}
@@ -105,7 +107,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
                     </div>
                     <div
                         style={{ backgroundColor: color }}
-                        className="absolute right-3 top-24 w-[100px] h-[100px] flex justify-center pt-4 rounded-full text-7xl font-normal text-white"
+                        className="hidden md:absolute right-3 top-24 w-[100px] h-[100px] md:flex justify-center pt-4 rounded-full text-7xl font-normal text-white"
                     >
                         {teacherName.slice(0, 1)}
                     </div>

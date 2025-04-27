@@ -11,7 +11,7 @@ const UserCard: FC<UserCardData> = ({ firstName, lastName, img, userRole }) => {
     console.log(userRole);
 
     return (
-        <div className="relative w-[380px] bg-slate-100 rounded-2xl py-9 px-7 text-center text-2xl font-medium">
+        <div className="relative w-[250px] lg:w-[300px] bg-slate-100 rounded-2xl py-9 px-7 text-center text-2xl font-medium">
             {img ? (
                 <img src={img} alt="user-img" className="rounded-full mb-2" />
             ) : (
@@ -21,7 +21,7 @@ const UserCard: FC<UserCardData> = ({ firstName, lastName, img, userRole }) => {
                     className="rounded-full mb-2"
                 />
             )}
-            <h3 className="mt-7 text-3xl font-semibold">
+            <h3 className="mt-7 text-xl lg:text-2xl font-semibold">
                 {firstName} {lastName}
             </h3>
             <div className="relative flex justify-center items-center">
@@ -34,7 +34,7 @@ const UserCard: FC<UserCardData> = ({ firstName, lastName, img, userRole }) => {
                         setIsLHover((_isLHover) => false);
                     }}
                 >
-                    <BiSolidMessageEdit className="text-5xl transition duration-200 ease-in-out hover:text-gray-500" />
+                    <BiSolidMessageEdit className="text-3xl lg:text-4xl transition duration-200 ease-in-out hover:text-gray-500" />
                 </button>
                 {isLHover ? (
                     <div className="absolute text-base top-[15px] left-1">
@@ -42,7 +42,7 @@ const UserCard: FC<UserCardData> = ({ firstName, lastName, img, userRole }) => {
                     </div>
                 ) : null}
             </div>
-            <div className="absolute top-1 right-2 text-5xl rounded-full p-3">
+            <div className="absolute top-1 right-2 text-3xl lg:text-4xl rounded-full p-3">
                 {userRole === "STUDENT" ? (
                     <PiStudentFill />
                 ) : (

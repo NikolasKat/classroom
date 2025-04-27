@@ -32,9 +32,29 @@ button {
     transition: 0.2s all;
 }
 
-/* @media (prefers-color-scheme: light) {
-    :root {
-        color: #213547;
-        background-color: #ffffff;
-    }
+.slick-arrow.slick-next,
+.slick-arrow.slick-prev {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .slick-arrow.slick-next:hover,
+.slick-arrow.slick-prev:hover {
+    background-color: #2574f5;
+    opacity: 1;
 } */
+
+.slick-prev::before,
+.slick-next::before {
+    display: none;
+}
+
+.arrows {
+    display: block;
+    font-size: 123px;
+    height: 200px;
+    width: 200px;
+    margin: 1px;
+    color: rgb(0, 0, 0);
+}

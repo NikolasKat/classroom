@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { IoLogOut } from "react-icons/io5";
 import { BsPatchPlusFill } from "react-icons/bs";
+import { RxHamburgerMenu } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../store/slices/userSlice";
 import InfoALert from "./InfoALert";
@@ -14,6 +15,7 @@ function Header() {
     const [isLHover, setIsLHover] = useState<boolean>(false);
 
     const [isFormClicked, setIsFormClicked] = useState<boolean>(false);
+    const [isBurgerClicked, setIsBurgerClicked] = useState<boolean>(false);
 
     const dispatch = useDispatch<AppDispatch>();
     const roleStatus = useSelector(
@@ -22,7 +24,7 @@ function Header() {
 
     return (
         <>
-            <header className="flex justify-between items-center px-9 py-4 text-3xl font-medium bg-slate-100">
+            <header className="flex justify-between items-center px-9 py-4 font-medium bg-slate-100">
                 <div className="flex items-center gap-9">
                     <Link
                         to="/"
@@ -31,18 +33,20 @@ function Header() {
                         <img
                             src="../../public/main_logo.svg"
                             alt="Home Page"
-                            className="w-20"
+                            className="w-10 sm:w-16 md:w-24 xl:w-24"
                         />
-                        <h2 className="text-6xl font-bold">Classroom</h2>
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold">
+                            Classroom
+                        </h2>
                     </Link>
                 </div>
 
-                <nav className="flex items-center gap-5 mt-4">
-                    <ul className="flex items-center gap-5 text-2xl">
+                <nav className="hidden lg:flex items-center gap-5 text-sm md:text-lg xl:text-xl">
+                    <ul className="flex items-center gap-4">
                         {roleStatus === ERoles.TEACHER ? (
                             <div>
                                 <button
-                                    className="text-5xl"
+                                    className="text-4xl"
                                     onMouseEnter={() => {
                                         setIsAHover((_isLHover) => true);
                                     }}
@@ -64,7 +68,7 @@ function Header() {
                                 ) : null}
                             </div>
                         ) : null}
-                        <li className="hover:text-gray-500">
+                        <li className="hover:text-gray-500 mb-1">
                             <Link
                                 to="myCourses"
                                 className="transition duration-200 ease-in-out hover:text-gray-500"
@@ -72,7 +76,7 @@ function Header() {
                                 Мои курсы
                             </Link>
                         </li>
-                        <li className="hover:text-gray-500">
+                        <li className="hover:text-gray-500 mb-1">
                             <Link
                                 to="allCourses"
                                 className="transition duration-200 ease-in-out hover:text-gray-500"
@@ -80,7 +84,7 @@ function Header() {
                                 Все курсы
                             </Link>
                         </li>
-                        <li>
+                        <li className="hover:text-gray-500 mb-1">
                             <Link
                                 to="classmates"
                                 className="transition duration-200 ease-in-out hover:text-gray-500"
@@ -90,7 +94,7 @@ function Header() {
                         </li>
                         <div>
                             <button
-                                className="text-6xl"
+                                className="text-5xl"
                                 onClick={() => dispatch(logout())}
                                 onMouseEnter={() => {
                                     setIsLHover((_isLHover) => true);
@@ -109,6 +113,23 @@ function Header() {
                         </div>
                     </ul>
                 </nav>
+                <div className="lg:hidden w-full">
+                    <div className="absolute top-2 right-2">
+                        <button
+                            className="relative text-3xl z-50 sm:text-3xl md:text-4xl"
+                            onClick={() =>
+                                setIsBurgerClicked(
+                                    (isBurgerClicked) => !isBurgerClicked,
+                                )
+                            }
+                        >
+                            <RxHamburgerMenu />
+                        </button>
+                    </div>
+                    {isBurgerClicked ? (
+                        <aside className="absolute top-0 right-0 bg-red-500 w-[50%] h-[100%]"></aside>
+                    ) : null}
+                </div>
             </header>
             <hr className="mb-9" />
             {isFormClicked ? <SubjectForm /> : null}
