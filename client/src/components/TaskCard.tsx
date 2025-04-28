@@ -6,15 +6,16 @@ import { SlBookOpen } from "react-icons/sl";
 import { FC, useState } from "react";
 import InfoALert from "./InfoALert";
 import { ETypeOfTask, TaskData } from "../models/interfaces";
+import { Link } from "react-router-dom";
 
 const TaskCard: FC<TaskData> = ({ title, subjectName, type }) => {
     const [isHover, setIsHover] = useState<boolean>(false);
     const [isCompleted, setIsCompleted] = useState<boolean>(false);
 
     return (
-        <div className="relative flex items-center w-11/12 justify-between text-5xl border border-solid-black px-5 py-4 rounded-2xl">
+        <div className="relative flex items-center w-11/12 justify-between border border-solid-black px-5 py-4 rounded-2xl">
             <div className="flex items-center gap-6">
-                <div className="bg-slate-100 p-4 rounded-full">
+                <div className="bg-slate-100 text-3xl lg:text-4xl p-4 rounded-full">
                     {/* <SlBookOpen /> */}
                     {type === ETypeOfTask.LAB ? (
                         <SlChemistry />
@@ -25,12 +26,17 @@ const TaskCard: FC<TaskData> = ({ title, subjectName, type }) => {
                     )}
                 </div>
                 <div>
-                    <h3 className="text-4xl">{title}</h3>
-                    <h4 className="text-2xl">{subjectName}</h4>
+                    <Link
+                        className="text-xl lg:text-3xl font-bold lg:font-semibold"
+                        to={`/login`}
+                    >
+                        {title}
+                    </Link>
+                    <h4 className="">{subjectName}</h4>
                 </div>
             </div>
             <button
-                className="transition duration-200 ease-in-out text-5xl hover:text-gray-500"
+                className="text-3xl lg:text-4xl"
                 onMouseEnter={() => {
                     setIsHover((_isHover) => true);
                 }}

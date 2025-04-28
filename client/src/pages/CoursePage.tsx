@@ -8,7 +8,7 @@ export default function CoursePage() {
 
     return (
         <section className="px-9">
-            <h3 className="text-5xl text-center font-bold mb-8">
+            <h3 className="text-3xl sm:text-4xl md:text-4xl xl:text-5xl font-bold mb-8 text-center">
                 {id} course Page
             </h3>
             <TaskList data={data} />
