@@ -39,7 +39,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
                     >
                         <div>
                             <Link
-                                to={`/${subjectName}`}
+                                to={`/courses/${subjectName}`}
                                 className="transition duration-200 ease-in-out text-xl md:text-2xl hover:text-gray-500"
                             >
                                 {subjectName}
@@ -86,7 +86,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
                             ) : null}
                         </div>
                     </div>
-                    <div className="p-3 flex justify-end border-t border-solid-black relative text-2xl">
+                    <div className="p-3 pr-6 flex justify-end border-t border-solid-black relative text-2xl">
                         <Link
                             to="#"
                             className="text-3xl bg-transparent hover:text-gray-600"

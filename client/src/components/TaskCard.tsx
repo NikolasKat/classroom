@@ -8,12 +8,12 @@ import InfoALert from "./InfoALert";
 import { ETypeOfTask, TaskData } from "../models/interfaces";
 import { Link } from "react-router-dom";
 
-const TaskCard: FC<TaskData> = ({ title, subjectName, type }) => {
+const TaskCard: FC<TaskData> = ({ title, subjectName, type, id }) => {
     const [isHover, setIsHover] = useState<boolean>(false);
     const [isCompleted, setIsCompleted] = useState<boolean>(false);
 
     return (
-        <div className="relative flex items-center w-11/12 justify-between border border-solid-black px-5 py-4 rounded-2xl">
+        <div className="relative flex items-center w-11/12 lg:w-4/5 justify-between border border-solid-black px-5 py-4 rounded-2xl">
             <div className="flex items-center gap-6">
                 <div className="bg-slate-100 text-3xl lg:text-4xl p-4 rounded-full">
                     {/* <SlBookOpen /> */}
@@ -27,12 +27,12 @@ const TaskCard: FC<TaskData> = ({ title, subjectName, type }) => {
                 </div>
                 <div>
                     <Link
-                        className="text-xl lg:text-3xl font-bold lg:font-semibold"
-                        to={`/login`}
+                        className="text-xl lg:text-2xl font-bold lg:font-semibold"
+                        to={`/courses/${subjectName}/tasks/${id}`}
                     >
                         {title}
                     </Link>
-                    <h4 className="">{subjectName}</h4>
+                    <h4>{subjectName}</h4>
                 </div>
             </div>
             <button

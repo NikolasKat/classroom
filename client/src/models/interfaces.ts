@@ -1,5 +1,4 @@
 export enum ETypeOfTask {
-    SCHEDULE = "SCHEDULE",
     LAB = "LAB",
     NOTES = "NOTES",
 }
@@ -51,11 +50,12 @@ export interface SubjectData {
 }
 
 export interface TaskData {
-    id: string;
+    _id: string;
     title: string;
     subjectName: string;
+    description: string;
     type: ETypeOfTask;
-    files: string[];
+    file: unknown;
 }
 
 export interface IUser {

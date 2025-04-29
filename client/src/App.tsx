@@ -13,6 +13,7 @@ import MyCoursesPage from "./pages/MyCoursesPage";
 import ClassmatesPage from "./pages/ClassmatesPage";
 import CoursePage from "./pages/CoursePage";
 import Profile from "./components/Profile";
+import TaskPage from "./pages/TaskPage";
 
 function App() {
     const dispatch = useDispatch<AppDispatch>();
@@ -40,22 +41,19 @@ function App() {
         <>
             <Routes>
                 <Route path="/" element={<HomePage />}>
-                    <Route index element={<Profile />}></Route>
+                    <Route index element={<Profile />} />
+                    <Route path="allCourses" element={<AllCoursesPage />} />
+                    <Route path="myCourses" element={<MyCoursesPage />} />
+                    <Route path="classmates" element={<ClassmatesPage />} />
+                    <Route path="courses/:id" element={<CoursePage />} />
                     <Route
-                        path="allCourses"
-                        element={<AllCoursesPage />}
-                    ></Route>
-                    <Route path="myCourses" element={<MyCoursesPage />}></Route>
-                    <Route path="/:id" element={<CoursePage />}>
-                        {/* <Route path="/:id" element={<LoginPage />} /> */}
-                    </Route>
-                    <Route
-                        path="classmates"
-                        element={<ClassmatesPage />}
-                    ></Route>
+                        path="/courses/:id/tasks/:id"
+                        element={<TaskPage />}
+                    />
                 </Route>
-                <Route path="/login" element={<LoginPage />}></Route>
-                <Route path="/register" element={<RegisterPage />}></Route>
+
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
             </Routes>
         </>
     );

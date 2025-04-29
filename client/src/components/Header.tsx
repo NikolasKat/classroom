@@ -8,7 +8,7 @@ import { PiStudentFill } from "react-icons/pi";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../store/slices/userSlice";
 import InfoALert from "./InfoALert";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { AppDispatch, RootState } from "../store/store";
 import { ERoles } from "../models/interfaces";
 import SubjectForm from "./SubjectForm";
@@ -121,7 +121,7 @@ function Header() {
                         <button
                             className="relative text-3xl sm:text-3xl md:text-4xl hover:text-gray-500 transition-colors delay-10 duration-300"
                             onClick={() =>
-                                setIsBurgerClicked((isBurgerClicked) => true)
+                                setIsBurgerClicked((_isBurgerClicked) => true)
                             }
                         >
                             <RxHamburgerMenu />
@@ -136,7 +136,7 @@ function Header() {
                     <button
                         className=" absolute top-3 right-2 text-3xl sm:text-3xl md:text-4xl hover:text-gray-500 transition-colors delay-10 duration-300"
                         onClick={() =>
-                            setIsBurgerClicked((isBurgerClicked) => false)
+                            setIsBurgerClicked((_isBurgerClicked) => false)
                         }
                     >
                         <RxCross2 />
@@ -147,6 +147,11 @@ function Header() {
                             <Link
                                 to="/"
                                 className="transition duration-200 ease-in-out hover:text-gray-500"
+                                onClick={() =>
+                                    setIsBurgerClicked(
+                                        (_isBurgerClicked) => false,
+                                    )
+                                }
                             >
                                 Home
                             </Link>
@@ -157,6 +162,11 @@ function Header() {
                             <Link
                                 to="myCourses"
                                 className="transition duration-200 ease-in-out hover:text-gray-500"
+                                onClick={() =>
+                                    setIsBurgerClicked(
+                                        (_isBurgerClicked) => false,
+                                    )
+                                }
                             >
                                 My courses
                             </Link>
@@ -167,6 +177,11 @@ function Header() {
                             <Link
                                 to="allCourses"
                                 className="transition duration-200 ease-in-out hover:text-gray-500"
+                                onClick={() =>
+                                    setIsBurgerClicked(
+                                        (_isBurgerClicked) => false,
+                                    )
+                                }
                             >
                                 All courses
                             </Link>
@@ -177,6 +192,11 @@ function Header() {
                             <Link
                                 to="classmates"
                                 className="transition duration-200 ease-in-out hover:text-gray-500"
+                                onClick={() =>
+                                    setIsBurgerClicked(
+                                        (_isBurgerClicked) => false,
+                                    )
+                                }
                             >
                                 Classmates
                             </Link>
@@ -206,4 +226,4 @@ function Header() {
     );
 }
 
-export default Header;
+export default memo(Header);
