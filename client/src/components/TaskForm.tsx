@@ -15,6 +15,7 @@ export function TaskForm({ subjectName }) {
 
     const onSubmit: SubmitHandler<TaskData> = async (data) => {
         try {
+            const newData: TaskData = { ...data, subjectName: subjectName };
             console.log(data);
         } catch (error) {
             alert("Проблемы при создании задачи!");

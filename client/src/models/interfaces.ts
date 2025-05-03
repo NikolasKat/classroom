@@ -32,11 +32,6 @@ export interface ConnectedUsers {
     lastName: string;
 }
 
-interface Tasks {
-    type: ETypeOfTask;
-    name: string;
-}
-
 export interface SubjectData {
     subjectName: string;
     teacher: {
@@ -45,14 +40,14 @@ export interface SubjectData {
         lastName: string;
     };
     connectedUsers: ConnectedUsers[];
-    tasks: Tasks[];
+    tasks: TaskData[];
     _id: string;
 }
 
 export interface TaskData {
     _id: string;
-    title: string;
     subjectName: string;
+    title: string;
     description: string;
     type: ETypeOfTask;
     file: unknown;

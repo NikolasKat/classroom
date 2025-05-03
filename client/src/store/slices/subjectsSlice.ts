@@ -76,11 +76,6 @@ export const disconnectStudent = createAsyncThunk(
     },
 );
 
-// export const deleteSubject = createAsyncThunk(
-//     "subjects/deleteSubject",
-//     async function () {},
-// );
-
 export const subjectsSlice = createSlice({
     name: "subjects",
     initialState,
@@ -89,7 +84,6 @@ export const subjectsSlice = createSlice({
             state.subjects = action.payload;
         },
     },
-    // extraReducers(builder) {},
 });
 
 export const { setSubjects } = subjectsSlice.actions;

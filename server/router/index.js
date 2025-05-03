@@ -20,6 +20,7 @@ router.get("/client", authMiddleware, userController.getClient);
 
 // routing for Subjects
 router.post("/addSubject", subjectController.addSubject);
+// router.put("/addTask", subjectController.addTask);
 router.put("/connectStudent", subjectController.connectStudent);
 router.put("/disconnectStudent", subjectController.disconnectStudent);
 // router.delete("/deleteSubject", subjectController.removeSubject);

@@ -6,8 +6,11 @@ const ConnectedStudentsSchema = new Schema({
 });
 
 const TaskSchema = new Schema({
+   title: { type: String, required: true },
+   description: { type: String, required: true },
+   subjectName: { type: String, required: true },
    type: { type: String, required: true },
-   name: { type: String, required: true },
+   file: { type: File, required: true },
 });
 
 const SubjectSchema = new Schema({
