@@ -11,16 +11,16 @@
 ## Technologies used
 
 * **Frontend:**
-    * [React](https://react.dev/) 
-    * [TypeScript](https://www.typescriptlang.org/) 
-    * [Redux Toolkit](https://redux-toolkit.js.org/) 
-    * [Tailwind CSS](https://tailwindcss.com/) 
-    * [Vite](https://vitejs.dev/)
-    * [React Hook Form]
+    * React
+    * TypeScript
+    * Redux Toolkit
+    * Tailwind CSS
+    * Vite
+    * React Hook Form
 * **Backend:**
-    * [Express.js](https://expressjs.com/) 
-    * [Node.js](https://nodejs.org/)
-    * [MongoDB]
+    * Express.js
+    * Node.js
+    * MongoDB
 
 ## Installation and start-up
 
